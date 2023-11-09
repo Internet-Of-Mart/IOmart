@@ -21,4 +21,5 @@ Once downloaded extract the zip file in a safe location <mark>C:\php</mark>
 <ul>
 <li>Opening a terminal in the path to this project on your pc type the command: <mark>php -S localhost:4000</mark></li>
 <li>The command should spin up the web server and allow you to access the website in <mark>localhost:4000</mark> in your browser</li>
+<li>If you need to close the web server you can do so by pressing <mark>Ctrl + C</mark> in your terminal</li>
 </ul>
