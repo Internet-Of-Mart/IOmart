@@ -1,0 +1,7 @@
+.navbar {
+    display: grid;
+    background-color: #ffffff;
+    box-shadow: 10px 10px 5px black;
+    width: 30%;
+    height: 100vh;
+}
