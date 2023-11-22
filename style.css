@@ -1,6 +1,6 @@
 .navbar {
     height: 100%;
-    width: 200px;
+    width: 15%;
     left: 0;
     top: 0;
     position: fixed!important;
@@ -134,5 +134,48 @@
     border-radius: 25px;
     padding: 30px;
     box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.16);
+}
 
+.window {
+    height: 100%;
+    width: 85%;
+    left: 15%;
+    top: 0;
+    position: fixed!important;
+    background-color: #DDD6CD;
+}
+
+.tab_container {
+    background-color: #F2EFEB;
+    display: flex;
+    justify-content: space-around;
+    height:50px;
+    width:100%;
+
+}
+
+
+/* Style of Tab Links */
+.tab_container a {
+    color: black;
+    text-decoration: none;
+    height:50px;
+    width:100%;
+    background-color: inherit;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Change background color of buttons on hover */
+.tab_container a:hover {
+    cursor: pointer;
+    text-decoration: none;
+    background-color: #e8e3dc;
+}
+
+/* Active Tab */
+.tab_container a:active {
+    background-color: #DDD6CD ;
 }
