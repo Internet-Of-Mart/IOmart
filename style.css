@@ -58,6 +58,7 @@
     text-align: center;
 }
 
+
 .button_container {
     display: inline-block;
 }
@@ -166,6 +167,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16);
 }
 
 /* Change background color of buttons on hover */
@@ -179,3 +181,49 @@
 .tab_container a:active {
     background-color: #DDD6CD ;
 }
+
+.window_box_container{
+    display: flex;
+    justify-content: center;
+}
+
+.window_box{
+    background-color: #FFFFFF;
+    border-radius: 25px;
+    padding: 30px;
+    height: 600px;
+    width: 800px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.store_index_container {
+    display: flex;
+    margin: 10px;
+    justify-content: left;
+    align-items: center;
+}
+
+.graph_window {
+    height: 500px;
+    width: 600px;
+    display:flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.color_box {
+    height: 5px;
+    width: 40px;
+    margin-right: 20px;
+    background-color: cornflowerblue;
+    display:flex;
+    justify-content: left;
+    flex-direction: row;
+}
+
+
+
+
+
