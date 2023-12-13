@@ -1,14 +1,16 @@
 <div class="navbar">
     <div class="sub_navbar">
         <img src="./Assets/IOmart%20Logo.png">
-        <a href=""> Section A1 </a>
-        <a href=""> Section A2 </a>
+        <a href=""> Section Management </a>
+        <a href=""> Store Data</a>
     </div>
 
     <div class="sub_navbar">
         <h3>Control Panel</h3>
-        <a href=""> Section B1 </a>
-        <a href=""> Section B2 </a>
+        <a href=""> Lights</a>
+        <a href=""> Temperature </a>
+        <a href ="">Humidity</a>
+        <a href =""> Security/Safety</a>
     </div>
 
     <div class="user-nav">
