@@ -62,7 +62,6 @@
     margin: 30px;
 }
 
-
 .button_container {
     display: inline-block;
 }
@@ -72,6 +71,17 @@
     width: 100px;
     background-color: #858585;
     margin-right: -4px;
+}
+
+.image_placeholder {
+    height: 100px;
+    width: 300px;
+    background-color: #858585;
+    margin-right: 8px;
+}
+.flex_image_placeholder{
+    display: flex;
+    justify-content: center;
 }
 
 .auto_button {

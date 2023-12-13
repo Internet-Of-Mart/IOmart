@@ -13,6 +13,10 @@
     include "navbar.php"
 ?>
 
+<?php
+    include "./Components/StoreBox.php"
+?>
+
 
 </body>
 </html>
