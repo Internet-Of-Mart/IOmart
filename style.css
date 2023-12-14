@@ -141,16 +141,15 @@
 }
 
 .main_controlbox {
-    height: 50px;
+    height: 100px;
     width: 600px;
     background-color: #FFFFFF;
     border-radius: 25px;
-    padding: 30px;
     box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.16);
     margin:50px;
 }
 
-.window {
+.window_for_tab {
     height: 100%;
     width: 85%;
     left: 15%;
@@ -159,8 +158,19 @@
     background-color: #DDD6CD;
     display: flex;
     justify-content: flex-start;
-    flex-direction: column;
+}
 
+.window{
+    height: 100%;
+    width: 85%;
+    left: 15%;
+    top: 0;
+    position: fixed!important;
+    background-color: #DDD6CD;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .tab_container {
@@ -200,9 +210,17 @@
 
 .window_box_container{
     display: flex;
-    justify-content: center;
     align-items: center;
     height: 100%;
+}
+
+.window_section_container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    overflow: auto;
+    justify-content: center;
 }
 
 .body_window_container{
@@ -308,7 +326,6 @@
     background-color: #DDD6CD;
     align-items: center;
     padding: 10px 0 10px 0;
-
 }
 
 /*
@@ -333,7 +350,9 @@
     cursor: pointer;
     -webkit-transition-duration: 0.2s;
     transition-duration: 0.2s;
+    margin-bottom: 20px;
 }
+
 .button_down:hover {
     box-shadow: 0 10px 14px 0 rgba(0,0,0,0.20), 0 15px 40px 0 rgba(0,0,0,0.15);
 }
@@ -364,4 +383,46 @@
     box-sizing: border-box;
 }
 
+.section_management_container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    height:100%;
+    align-items: center;
+    text-align: center;
+    overflow: auto;
+}
+
+.section_management_container label{
+    width:30%;
+    font-size: 1.5rem;
+}
+
+.device_sensor_icons_container {
+    width:40%;
+    display:flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.manage_button {
+    height: 60px;
+    width: 100px;
+    background-color: #e8e3dc;
+    margin:15px;
+}
+
+.manage_button:hover{
+    cursor: pointer;
+    background-color: #DDD6CD;
+}
+
+.section_box {
+    height: 100px;
+    width: 900px;
+    background-color: #FFFFFF;
+    border-radius: 25px;
+    box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.16);
+    margin:20px;
+}
 

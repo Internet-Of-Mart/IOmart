@@ -1,4 +1,4 @@
-<div class="window">
+<div class="window_for_tab">
     <div class="tab_container">
         <a href="">Sections</a>
         <a href="">Devices</a>
