@@ -1,3 +1,6 @@
+<?php
+include_once '../wrapper/header.php';
+?>
 <div class="window_login">
     <img src="./Assets/IOmart%20Logo.png" alt="">
     <div class="login_box">
@@ -21,4 +24,6 @@
     </div>
 </div>
 
-
+<?php
+include_once '../wrapper/footer.php';
+?>
