@@ -1,19 +1,5 @@
 <?php
 namespace Util;
-?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8"/>
-    <title>IOmart</title>
-    <link rel="stylesheet" href="style.css"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Numans"/>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=League+Spartan"/>
-</head>
-<body>
-
-<?php
 
 use mysqli;
 
@@ -44,6 +30,7 @@ class DB
     public function closeConnection() {
         $this->conn->close();
     }
+
     public function getPersonData()
     {
         $sql = "SELECT * FROM person";
@@ -62,13 +49,3 @@ class DB
         return $data;
     }
 }
-
-$database = new DB();
-$personData = $database->getPersonData();
-$database->closeConnection();
-var_dump($personData);
-
-?>
-
-</body>
-</html>
