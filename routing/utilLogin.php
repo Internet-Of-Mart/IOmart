@@ -1,9 +1,13 @@
 <?php
 
+include_once($_SERVER['DOCUMENT_ROOT'].'/Model/User.php');
+use model\User;
+
 session_start();
 
 if (true) {
-    $_SESSION['user'] = $_POST['username'];
+    /*$_POST['username'] will get stuff from the login form*/
+    $_SESSION['user'] = User::generateDemo();
     header('location:../Views/Light.php');
 }
 
