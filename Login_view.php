@@ -21,7 +21,6 @@
 
             <button type="submit">Login</button>
         </form>
-
         <p>Not a member? <a href="">Register</a></p>
     </div>
 </div>
