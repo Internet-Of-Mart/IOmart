@@ -2,7 +2,6 @@
 <script type="module">
 
     import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
-    //FIXME
     let data_ = [
         {name: 'StoreA', value: 140, date: new Date('2023-10-1')},
         {name: 'StoreA', value: 138, date: new Date('2023-10-12')},
@@ -13,6 +12,8 @@
         {name: 'StoreB', value: 120, date: new Date('2023-10-13')},
         {name: 'StoreB', value: 70, date: new Date('2023-10-20')}
     ]
+
+    let sumstat = d3.group(data_, d=>d.name)
 
     const width = 640;
     const height = 400;
@@ -28,12 +29,6 @@
         .append("g")
         .attr("transform", `translate(${marginLeft},${marginTop})`);
 
-    /*
-    const sumstat = d3.nest() // nest function allows to group the calculation per level of a factor
-        .key(function(d) { return d.name;})
-        .entries(data_); */
-    const sumstat = d3.group(data_, d => d.name);
-    console.log(sumstat)
 
     const x = d3.scaleUtc()
         .domain(d3.extent(data_, d => d.date))
@@ -54,8 +49,8 @@
         .text("Date")
         .style("text-anchor", "middle")
         .style("fill", "black")
-        .attr("x",width / 2 )
-        .attr("y", height )
+        .attr("x", width / 2)
+        .attr("y", height)
 
     // Add the y-axis
     svg.append("g")
@@ -71,33 +66,21 @@
         .attr("y", 0)
         .attr("x", 0 - (height / 2))
 
-    //const res = sumstat.map(function(d){ return d.key }) // list of group names
-  //  const res = Array.from(sumstat.keys());
+
     const color = d3.scaleOrdinal()
-        .range(['#e41a1c','#377eb8'])
+        .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
 
-    /*
-    svg.append("path")
-        .datum(sumstat)
-        .attr("fill", "none")
-        .attr("stroke", function(d){ return color(d.key) })
-        .attr("stroke-width", 1.5)
-        .attr("d", d3.line()
-            .x(function(d) { return x(d.date) })
-            .y(function(d) { return y(d.value) })
-        ) */
-
+    // Draw the line
     svg.selectAll(".line")
         .data(sumstat)
-        .enter()
         .join("path")
-        .attr('fill', 'none')
+        .attr("fill", "none")
         .attr("stroke", function(d){ return color(d[0]) })
-        .attr('stroke-width', 1.5)
-        .attr("d", function(d) {
+        .attr("stroke-width", 1.5)
+        .attr("d", function(d){
             return d3.line()
-                .x(function(d) { return x(d.date) })
-                .y(function(d) { return y(d.value) })
+                .x(function(d) { return x(d.date); })
+                .y(function(d) { return y(d.value); })
                 (d[1])
         })
 
