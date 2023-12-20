@@ -21,16 +21,29 @@ include_once '../navbar.php';
                 <?php
 
                 include_once($_SERVER['DOCUMENT_ROOT'] . '/Model/Sensor.php');
-
                 use model\Sensor;
 
-                $elements = [ /*Get data from db isntead*/
-                    Sensor::generateDemo(),
-                    Sensor::generateDemo2()
-                ];
+                // TODO: Add logic to retrieve sensors
+                // TODO: Rework sensor tab into graph sensor tab
 
-                foreach ($elements as $sensor) {
-                    include '../Components/ControlBox.php';
+                if ($_GET['tab'] === null) {
+                    $path = strtok($_SERVER["REQUEST_URI"], '?') . '?tab=sensors';
+                    header("location: $path");
+                }
+
+                if ($_GET['tab'] == 'devices') {
+                    $elements = [ /*Get data from db instead*/
+                        Sensor::generateDemo(),
+                        Sensor::generateDemo2()
+                    ];
+
+                    foreach ($elements as $element) {
+                        include '../Components/ControlBox.php';
+                    }
+                }
+
+                if ($_GET['tab'] == 'sensors') {
+                    //TODO: Include graph of sensors here
                 }
 
                 ?>

@@ -2,10 +2,10 @@
 
     <div class="controlbox">
         <label class="controlbox_title">
-            <?php /** @var Sensor $sensor */
-            include_once($_SERVER['DOCUMENT_ROOT'] . '/Model/Sensor.php');
-            use model\Sensor;
-            echo $sensor->name;
+            <?php /** @var Device $element */
+            include_once($_SERVER['DOCUMENT_ROOT'] . '/Model/Device.php');
+            use model\Device;
+            echo $element->name;
             ?>
         </label>
         <div class="button_inline_container">
@@ -19,7 +19,7 @@
             <div class="value_set_container">
                 <div class="value_inline_container">
                     <label>
-                        <?php echo $sensor->set_value .' '. $sensor->unit_type?>
+                        <?php echo $element->set_value .' '. $element->unit_type?>
                     </label>
                     <div class="arrow_button_container">
                         <button>
@@ -43,7 +43,7 @@
             <div class="value_set_container">
                 <div class="value_inline_container">
                     <label>
-                        <?php echo $sensor->actual_value .' '. $sensor->unit_type?>
+                        <?php echo $element->actual_value .' '. $element->unit_type?>
                     </label>
                 </div>
                 <div>
