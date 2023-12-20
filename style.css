@@ -158,6 +158,7 @@
     background-color: #DDD6CD;
     display: flex;
     justify-content: flex-start;
+    flex-direction: column;
 }
 
 .window{
