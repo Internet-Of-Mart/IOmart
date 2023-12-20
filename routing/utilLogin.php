@@ -7,7 +7,7 @@ session_start();
 
 if (true) {
     /*$_POST['username'] will get stuff from the login form*/
-    $_SESSION['user'] = User::generateDemo();
+    $_SESSION['user'] = json_encode(User::generateDemo());
     header('location:../Views/Light.php');
 }
 

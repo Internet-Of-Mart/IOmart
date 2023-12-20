@@ -1,6 +1,6 @@
 <div class="navbar">
     <div class="sub_navbar">
-        <img src="./Assets/IOmart%20Logo.png" alt="">
+        <img src="../Assets/IOmart%20Logo.png">
         <a href=""> User Management </a>
         <a href=""> Store Management </a>
         <a href=""> Store Comparison </a>
