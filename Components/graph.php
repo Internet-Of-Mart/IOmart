@@ -1,58 +1,60 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
-<script src="https://d3js.org/d3.v4.js"></script>
 <div id="my_dataviz"></div>
-<script>
-    // set the dimensions and margins of the graph
-    const margin = {top: 10, right: 30, bottom: 30, left: 60},
-        width = 600 - margin.left - margin.right,
-        height = 400 - margin.top - margin.bottom;
+<script type="module">
 
-    // append the svg object to the body of the page
+    import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
+
+    let data_ = [
+        {value: 15, date: new Date('2023-10-1')},
+        {value: 16, date: new Date('2023-10-12')},
+        {value: 19, date: new Date('2023-10-13')},
+        {value: 25, date: new Date('2023-10-20')}
+    ]
+
+    const width = 640;
+    const height = 400;
+    const marginTop = 20;
+    const marginRight = 20;
+    const marginBottom = 30;
+    const marginLeft = 40;
+
     const svg = d3.select("#my_dataviz")
         .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+        .attr("width", width + marginLeft + marginRight)
+        .attr("height", height + marginTop + marginBottom)
         .append("g")
-        .attr("transform", `translate(${margin.left},${margin.top})`);
+        .attr("transform", `translate(${marginLeft},${marginTop})`);
 
-    //Read the data
-    d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/3_TwoNumOrdered_comma.csv",
+    const x = d3.scaleUtc()
+        .domain(d3.extent(data_, d => d.date))
+        .range([marginLeft, width - marginRight]);
 
-        // When reading the csv, I must format variables:
-        function(d){
-            return { date : d3.timeParse("%Y-%m-%d")(d.date), value : d.value }
-        })
-        .then(
-        // Now I can use this dataset:
-        (data) => {
-            console.log(data)
+    // Declare the y (vertical position) scale.
+    const y = d3.scaleLinear()
+        .domain(d3.extent(data_, d => d.value))
+        .range([height - marginBottom, marginTop]);
 
-            // Add X axis --> it is a date format
-            const x = d3.scaleTime()
-                .domain(d3.extent(data, function(d) { return d.date; }))
-                .range([ 0, width ]);
-            svg.append("g")
-                .attr("transform", `translate(0, ${height})`)
-                .call(d3.axisBottom(x));
+    svg.append("g")
+        .attr("transform", `translate(0,${height - marginBottom})`)
+        .call(d3.axisBottom(x));
 
-            // Add Y axis
-            const y = d3.scaleLinear()
-                .domain([0, d3.max(data, function(d) { return +d.value; })])
-                .range([ height, 0 ]);
-            svg.append("g")
-                .call(d3.axisLeft(y));
+    // Add the y-axis.
+    svg.append("g")
+        .attr("transform", `translate(${marginLeft},0)`)
+        .call(d3.axisLeft(y));
 
-            // Add the line
-            svg.append("path")
-                .datum(data)
-                .attr("fill", "none")
-                .attr("stroke", "steelblue")
-                .attr("stroke-width", 1.5)
-                .attr("d", d3.line()
-                    .x(function(d) { return x(d.date) })
-                    .y(function(d) { return y(d.value) })
-                )
+    svg.selectAll('circle')
+        .data(data_, d => d ? d.id : this.id)
+        .text(d => d.value)
+        .join(
+            enter => enter.append("circle"),
+            update => update,
+            exit => exit.remove()
+        )
+        .attr("fill", "red")
+        .attr("stroke", "black")
+        .attr("r", 2)
+        .attr("cx", d => x(d.date))
+        .attr("cy", d => y(d.value));
 
-        })
+
 </script>
