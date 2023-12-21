@@ -14,8 +14,6 @@ if (!isset($_SESSION['user'])) {
 
     $user = json_decode($_SESSION['user']);
 
-    var_dump($_SESSION['store']);
-
     if ($user->position === 1) {
         /*TODO: Add store selection*/
 
@@ -28,4 +26,5 @@ if (!isset($_SESSION['user'])) {
     } else {
         include_once '../navbar.php';
     }
+
 }
