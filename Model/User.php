@@ -35,7 +35,22 @@ class User
         $this->position = $position;
     }
 
-    public static function generateDemo(): User
+    public static function generateManagerDemo(): User
+    {
+        /*TODO:Remove*/
+        return new User(
+            'hello@email.com',
+            123,
+            'Adam',
+            33799,
+            'Paris 75001',
+            '01/01/1999',
+            '20/12/2019',
+            2
+        );
+    }
+
+    public static function generateAdminDemo(): User
     {
         /*TODO:Remove*/
         return new User(

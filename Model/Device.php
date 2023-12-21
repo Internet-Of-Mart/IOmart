@@ -31,7 +31,7 @@ class Device
         return new Device(
             'Temperature',
             'C',
-            'Hallway A temps',
+            'Air conditioner 1',
             20,
             0
         );
@@ -42,7 +42,7 @@ class Device
         return new Device(
             'Temperature',
             'K',
-            'Hallway B temps',
+            'Refrigerator 2',
             220,
             0
         );

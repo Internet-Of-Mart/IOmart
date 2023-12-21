@@ -13,7 +13,6 @@ class Sensor
      * @param string $type
      * @param string $unit_type
      * @param string $name
-     * @param int $set_value
      * @param int $actual_value
      */
     public function __construct(string $type, string $unit_type, string $name, int $actual_value)

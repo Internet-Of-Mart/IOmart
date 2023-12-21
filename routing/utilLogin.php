@@ -6,8 +6,12 @@ use model\User;
 session_start();
 
 if (true) {
-    /*$_POST['username'] will get stuff from the login form*/
-    $_SESSION['user'] = json_encode(User::generateDemo());
-    header('location:../Views/Light.php');
+    if ($_POST['username'] == 'admin') {
+        $_SESSION['user'] = json_encode(User::generateAdminDemo());
+        header('location:../Views/StoreManagement.php');
+    } else {
+        $_SESSION['user'] = json_encode(User::generateManagerDemo());
+        header('location:../Views/Temperature.php');
+    }
 }
 
