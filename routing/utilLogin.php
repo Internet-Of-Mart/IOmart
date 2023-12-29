@@ -13,7 +13,6 @@ if (!$userDB) {
 
 } else {
     $user = User::loadRaw($userDB[0]);
-    var_dump($user);
 
     if ($user->position == 1) {
         $_SESSION['user'] = json_encode($user);
