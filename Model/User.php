@@ -107,7 +107,8 @@ class User
     public static function login($username, $password): array
     {
         $DB = new DB();
-        return $DB->getUserCredentials($username, $password);
+        $hash_password = hash('ripemd160', $password);
+        return $DB->getUserCredentials($username, $hash_password);
     }
 
     

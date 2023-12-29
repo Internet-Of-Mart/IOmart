@@ -70,7 +70,7 @@ class DB
         return $data;
     }
 
-    public function getUserCredentials($username, $password)
+    public function getUserCredentials($username, $password): array
     {
 
         $data = [];
