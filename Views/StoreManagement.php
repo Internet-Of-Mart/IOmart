@@ -6,15 +6,12 @@ include_once '../wrapper/session_checker.php';
 
     <?php
 
-    include_once($_SERVER['DOCUMENT_ROOT'] . '/Model/Section.php');
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/Model/Store.php');
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/Model/User.php');
 
-    use model\Section;
-
-    $elements = [ /*Get data from db instead*/
-        Section::generateDemo1(),
-        Section::generateDemo2(),
-        Section::generateDemo3()
-    ];
+    use model\Store;
+    use model\User;
+    $elements = Store::getStoresAdmin(User::getSessionUser()->id);
 
     foreach ($elements as $element) {
         include '../Components/storeBox.php';

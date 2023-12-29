@@ -8,6 +8,7 @@ use Util\DB;
 
 class User
 {
+    public int $id = 0;
     public string $email = '';
     public int $employee_number = 0;
     public string $firstname = '';
@@ -19,6 +20,7 @@ class User
     public int $position = 0;
 
     /**
+     * @param int $id
      * @param string $email
      * @param int $employee_number
      * @param string $firstname
@@ -29,8 +31,9 @@ class User
      * @param string $do_employment
      * @param int $position
      */
-    public function __construct(string $email, int $employee_number, string $firstname, string $lastname, int $telephone, string $address, string $dob, string $do_employment, int $position)
+    public function __construct(int $id, string $email, int $employee_number, string $firstname, string $lastname, int $telephone, string $address, string $dob, string $do_employment, int $position)
     {
+        $this->id = $id;
         $this->email = $email;
         $this->employee_number = $employee_number;
         $this->firstname = $firstname;
@@ -47,6 +50,7 @@ class User
     {
         /*TODO:Remove*/
         return new User(
+            2,
             'hello@email.com',
             123,
             'Adam',
@@ -63,6 +67,7 @@ class User
     {
         /*TODO:Remove*/
         return new User(
+            3,
             'hello@email.com',
             123,
             'Leonardo',
@@ -78,9 +83,10 @@ class User
     public static function loadRaw($userRaw)
     {
         return new User(
+            $userRaw['id_user'],
             $userRaw['email'],
             $userRaw['employee_number'],
-            'Leonardo',
+            'Leonardo', //FIXME
             "Di Caprio",
             $userRaw['telephone'],
             $userRaw['address'],
@@ -108,7 +114,15 @@ class User
     {
         $DB = new DB();
         $hash_password = hash('ripemd160', $password);
-        return $DB->getUserCredentials($username, $hash_password);
+        $userLogin = $DB->getUserCredentials($username, $hash_password);
+        $DB->closeConnection();
+        return $userLogin;
+    }
+
+    public static function getSessionUser()
+    {
+        session_start();
+        return json_decode($_SESSION['user']);
     }
 
     
