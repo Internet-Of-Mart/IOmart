@@ -2,6 +2,10 @@
 
 namespace model;
 
+include_once($_SERVER['DOCUMENT_ROOT'] . '/Util/DB.php');
+
+use Util\DB;
+
 class User
 {
     public string $email = '';
@@ -71,6 +75,21 @@ class User
         );
     }
 
+    public static function loadRaw($userRaw)
+    {
+        return new User(
+            $userRaw['email'],
+            $userRaw['employee_number'],
+            'Leonardo',
+            "Di Caprio",
+            $userRaw['telephone'],
+            $userRaw['address'],
+            $userRaw['date_of_birth'],
+            $userRaw['date_of_employment'],
+            $userRaw['position_type']
+        );
+    }
+
     public function getPositionString(): ?string
     {
         if ($this->position == 1) {
@@ -84,4 +103,13 @@ class User
         }
         return null;
     }
+
+    public static function login($username, $password): array
+    {
+        $DB = new DB();
+        $hash_password = hash('ripemd160', $password);
+        return $DB->getUserCredentials($username, $hash_password);
+    }
+
+    
 }

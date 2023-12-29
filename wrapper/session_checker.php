@@ -1,13 +1,6 @@
 <?php
 session_start();
 
-function fixObject (&$object)
-{
-    if (!is_object ($object) && gettype ($object) == 'object')
-        return ($object = unserialize (serialize ($object)));
-    return $object;
-}
-
 if (!isset($_SESSION['user'])) {
     header('location:../index.php');
 } else {
