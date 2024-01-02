@@ -3,7 +3,6 @@
 namespace model;
 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/Util/DB.php');
-
 use Util\DB;
 
 class Store
@@ -40,6 +39,19 @@ class Store
 
         $DB->closeConnection();
         return $stores;
+    }
+
+    public static function getStoreUsers($storeID)
+    {
+        $DB = new DB();
+        $usersRaw = $DB->getStoreUsers($storeID);
+        $users = [];
+
+        foreach ($usersRaw as $uR) {
+            $users[] = User::loadRaw($uR);
+        }
+
+        return $users;
     }
 
 }
