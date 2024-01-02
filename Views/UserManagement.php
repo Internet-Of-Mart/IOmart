@@ -16,18 +16,22 @@ include_once '../wrapper/session_checker.php';
             <?php
 
             include $_SERVER['DOCUMENT_ROOT'] . '/Model/User.php';
-
+            include $_SERVER['DOCUMENT_ROOT'] . '/Model/Store.php';
             use model\User;
+            use model\Store;
 
+            $adminStores = Store::getStoresAdmin(User::getSessionUser()->id);
 
-            $elements = [
-                User::generateAdminDemo(),
-                User::generateManagerDemo()
-            ];
+            $users = [];
+            foreach ($adminStores as $s) {
+                foreach (Store::getStoreUsers($s->id) as $u) {
+                    $users[$u->id] = $u;
+                }
+            }
 
             $even = 1;
 
-            foreach ($elements as $element) {
+            foreach ($users as $element) {
                 include '../Components/UserManagementLine.php';
                 $even+=1;
             }

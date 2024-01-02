@@ -87,7 +87,21 @@ class DB
     {
         $data = [];
 
-        $result = $this->conn->execute_query("SELECT * FROM store LEFT JOIN position ON store.id_store = position.store_id WHERE user_id=1 AND user_id=?", [$userID]);
+        $result = $this->conn->execute_query("SELECT * FROM store LEFT JOIN position ON store.id_store = position.store_id WHERE position.position_type = 1 AND user_id = ?", [$userID]);
+        while ($row = $result->fetch_array()) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+
+    /**
+     * GETS Store users that aren't admins
+    **/
+    public function getStoreUsers($storeID): array
+    {
+        $data = [];
+
+        $result = $this->conn->execute_query("SELECT * FROM person LEFT JOIN position ON person.id_user = position.user_id LEFT JOIN store ON position.store_id = store.id_store WHERE store.id_store=? and position.position_type!=1", [$storeID]);
         while ($row = $result->fetch_array()) {
             $data[] = $row;
         }
