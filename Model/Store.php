@@ -35,11 +35,7 @@ class Store
         $stores = [];
 
         foreach ($storesRaw as $st) {
-            $stores[] = new Store(
-                $st['id_store'],
-                $st['name'],
-                $st['address']
-            );
+            $stores[] = self::loadRaw($st);
         }
 
         $DB->closeConnection();
