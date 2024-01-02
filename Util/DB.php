@@ -87,7 +87,7 @@ class DB
     {
         $data = [];
 
-        $result = $this->conn->execute_query("SELECT * FROM store LEFT JOIN position ON store.id_store = position.store_id WHERE user_id=1 AND user_id=?", [$userID]);
+        $result = $this->conn->execute_query("SELECT * FROM store LEFT JOIN position ON store.id_store = position.store_id WHERE position.position_type = 1 AND user_id = ?", [$userID]);
         while ($row = $result->fetch_array()) {
             $data[] = $row;
         }
