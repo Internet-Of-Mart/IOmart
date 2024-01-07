@@ -8,10 +8,9 @@ if (!isset($_SESSION['user'])) {
     $user = json_decode($_SESSION['user']);
 
     if ($user->position === 1) {
-        /*TODO: Add store selection*/
-
-        if (!isset($_SESSION['store'])) {
+        if (!$_SESSION['store_id']) {
             include_once '../navbar_admin.php';
+
         } else {
             include_once '../navbar.php';
         }
