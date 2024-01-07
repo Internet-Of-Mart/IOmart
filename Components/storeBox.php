@@ -10,6 +10,10 @@ use model\Store;
             <div class="flex_image_placeholder"></div>
         </div>
         <h3><?php echo $element->address ?></h3>
+        <form action="../routing/utilStoreSelect.php" method="post">
+            <input type="hidden" name="store_id" value=<?php echo $element->id?>>
+            <input type="submit" value="Select store" />
+        </form>
     </div>
 </div>
 
