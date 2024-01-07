@@ -70,12 +70,12 @@ class DB
         return $data;
     }
 
-    public function getUserCredentials($username, $password): array
+    public function getUserCredentials($username): array
     {
 
         $data = [];
 
-        $result = $this->conn->execute_query("SELECT * FROM credentials LEFT JOIN person ON credentials.id_credentials = person.credentials_id LEFT JOIN position ON position.user_id=person.id_user WHERE username=? AND password_hash=?", [$username, $password]);
+        $result = $this->conn->execute_query("SELECT * FROM credentials INNER JOIN person ON credentials.id_credentials = person.credentials_id LEFT JOIN position ON position.user_id=person.id_user WHERE credentials.username=? LIMIT 1", [$username]);
         while ($row = $result->fetch_array()) {
             $data[] = $row;
         }
