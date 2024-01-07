@@ -86,8 +86,8 @@ class User
             $userRaw['id_user'],
             $userRaw['email'],
             $userRaw['employee_number'],
-            'Leonardo', //FIXME
-            "Di Caprio",
+            $userRaw['first_name'],
+            $userRaw['last_name'],
             $userRaw['telephone'],
             $userRaw['address'],
             $userRaw['date_of_birth'],
