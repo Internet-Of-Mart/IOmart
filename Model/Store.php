@@ -18,7 +18,7 @@ class Store
         $this->address = $address;
     }
 
-    public static function loadRaw($storeRaw)
+    public static function loadRaw($storeRaw): Store
     {
         return new Store(
             $storeRaw['id_store'],
@@ -27,7 +27,7 @@ class Store
         );
     }
 
-    public static function getStoresAdmin($userID)
+    public static function getStoresAdmin($userID): array
     {
         $DB = new DB();
         $storesRaw = $DB->getAdminStores($userID);
@@ -41,7 +41,7 @@ class Store
         return $stores;
     }
 
-    public static function getStoreUsers($storeID)
+    public static function getStoreUsers($storeID): array
     {
         $DB = new DB();
         $usersRaw = $DB->getStoreUsers($storeID);
@@ -52,6 +52,20 @@ class Store
         }
 
         return $users;
+    }
+
+    public static function getUserStores($userID): array
+    {
+        $DB = new DB();
+        $storesRaw = $DB->getUserStores($userID);
+        $stores = [];
+
+        foreach ($storesRaw as $st) {
+            $stores[] = self::loadRaw($st);
+        }
+
+        $DB->closeConnection();
+        return $stores;
     }
 
 }
