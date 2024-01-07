@@ -6,13 +6,12 @@ use model\User;
 
 session_start();
 
-$userDB = User::login($_POST['username'], $_POST['password']);
+$user = User::login($_POST['username'], $_POST['password']);
 
-if (!$userDB) {
+if (!$user) {
     //TODO: Login Error Display
 
 } else {
-    $user = User::loadRaw($userDB[0]);
 
     if ($user->position == 1) {
         $_SESSION['user'] = json_encode($user);

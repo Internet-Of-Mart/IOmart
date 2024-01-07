@@ -110,13 +110,20 @@ class User
         return null;
     }
 
-    public static function login($username, $password): array
+
+    /**
+     * Returns User Object if login is successful
+    */
+    public static function login($username, $password): ?User
     {
         $DB = new DB();
-        $hash_password = hash('ripemd160', $password);
-        $userLogin = $DB->getUserCredentials($username, $hash_password);
+        $userDB = $DB->getUserCredentials($username)[0];
         $DB->closeConnection();
-        return $userLogin;
+
+        if (password_verify($password, $userDB['password_hash'])) {
+            return User::loadRaw($userDB);
+        }
+        return null;
     }
 
     public static function getSessionUser()
@@ -125,5 +132,5 @@ class User
         return json_decode($_SESSION['user']);
     }
 
-    
+
 }
