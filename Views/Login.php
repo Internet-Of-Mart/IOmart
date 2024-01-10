@@ -1,3 +1,5 @@
+
+
 <div class="window_login">
     <img src="./Assets/IOmart%20Logo.png" alt="">
     <div class="login_box">
@@ -14,6 +16,6 @@
             <button type="submit">Login</button>
         </form>
 
-        <p>Not a member? <a href="">Register</a></p>
+        <p>Not a member? <a href="./Views/Registration.php">Register</a></p>
     </div>
 </div>
