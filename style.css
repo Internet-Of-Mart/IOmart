@@ -147,6 +147,9 @@
     border-radius: 25px;
     box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.16);
     margin:50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .window_for_tab {
@@ -471,7 +474,7 @@ input {
     box-sizing: border-box;
 }
 
-button {
+.login_box button {
     padding: 10px;
     background-color: #4CAF50;
     color: #fff;
@@ -480,11 +483,11 @@ button {
     cursor: pointer;
 }
 
-button:hover {
+.login_box button:hover {
     background-color: #45a049;
 }
 
-a {
+.login_box a {
     text-decoration: none;
     color: #007BFF;
     margin-left: 10px;
