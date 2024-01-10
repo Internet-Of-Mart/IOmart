@@ -10,7 +10,6 @@
         <a href="/Views/Light.php"> Lights</a>
         <a href="/Views/Temperature.php"> Temperature </a>
         <a href ="/Views/Humidity.php">Humidity</a>
-        <a href ="/Views/Safety.php"> Security/Safety</a>
     </div>
 
 
