@@ -4,7 +4,7 @@ include_once '../wrapper/header.php';
 <div class="window_login">
     <img src="../Assets/IOmart%20Logo.png" alt="">
     <div class="Registration_box">
-        <h2>Registration</h2>
+        <h4>Registration</h4>
         <form action="" method="post">
 
             <label for="EmployeeNumber">Employee Number:

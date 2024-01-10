@@ -461,6 +461,7 @@
     background-color: #DDD6CD;
     position: fixed!important;
     flex-direction: column;
+
 }
 
 input {
@@ -490,7 +491,8 @@ a {
 }
 
 .window_login img {
-    display: block;
+    display: flex;
+    justify-content: center;
     margin-left: auto;
     margin-right: auto;
     width: 200px;
@@ -504,17 +506,17 @@ a {
 .Registration_box {
     background-color: #fff;
     padding: 1%;
-    height: 90%;
-    width: 75%;
+    height: 150%;
+    width: 50%;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     align-items: center;
     overflow: auto;
-    margin-bottom: 2%;
+    margin-bottom: 5%;
 }
 
 .window_registration{
