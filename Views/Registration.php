@@ -46,14 +46,8 @@ include_once '../wrapper/header.php';
             <label for="EmploymentDate">EmploymentDate:
                 <input type="date" name="username" required/>
             </label>
-
-
-
-
-
             <button type="submit">Create</button>
         </form>
-
     </div>
 </div>
 
