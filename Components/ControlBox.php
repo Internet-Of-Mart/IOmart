@@ -1,6 +1,13 @@
 <div class="row_container">
+
     <div class="controlbox">
-        <label class="controlbox_title">Placeholder Section Name</label>
+        <label class="controlbox_title">
+            <?php /** @var Device $element */
+            include_once($_SERVER['DOCUMENT_ROOT'] . '/Model/Device.php');
+            use model\Device;
+            echo $element->name;
+            ?>
+        </label>
         <div class="button_inline_container">
             <div class="button_container">
                 <button>ON</button>
@@ -11,7 +18,9 @@
         <div class="value_display_container">
             <div class="value_set_container">
                 <div class="value_inline_container">
-                    <label>XX%</label>
+                    <label>
+                        <?php echo $element->set_value .' '. $element->unit_type?>
+                    </label>
                     <div class="arrow_button_container">
                         <button>
                             <svg xmlns="http://www.w3.org/2000/svg" height="2em" viewBox="0 0 320 512">
@@ -33,7 +42,9 @@
             </div>
             <div class="value_set_container">
                 <div class="value_inline_container">
-                    <label>XX%</label>
+                    <label>
+                        <?php echo $element->actual_value .' '. $element->unit_type?>
+                    </label>
                 </div>
                 <div>
                     <label>ACTUAL</label>

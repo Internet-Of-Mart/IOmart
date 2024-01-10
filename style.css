@@ -498,6 +498,7 @@ a {
     width: 200px;
 }
 
+
 .Registration_box {
     background-color: #fff;
     padding: 1%;
@@ -512,4 +513,34 @@ a {
     align-items: center;
     overflow: auto;
     margin-bottom: 5%;
+}
+
+.box-container_add_form {
+    width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.box-container_add_form {
+    display: flex;
+    flex-direction: column;
+}
+
+.box-container_add_form input {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.box-container_add_form button {
+    padding: 10px;
+    background-color: #45a049;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
