@@ -1,6 +1,11 @@
+<?php /** @var Section $element */
+include_once($_SERVER['DOCUMENT_ROOT'] . '/Model/Section.php');
+use model\Section;
+?>
+
 <div class="section_box">
     <div class="section_management_container">
-        <label>Section Placeholder</label>
+        <label><?php echo $element->name?></php></label>
         <div class="device_sensor_icons_container">
             <svg xmlns="http://www.w3.org/2000/svg" height="25" width="22" viewBox="0 0 448 512">
                 <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
