@@ -141,5 +141,16 @@ class DB
         return $data;
     }
 
+    public function getDeviceTypeSection($sectionID): array
+    {
+        $data = [];
+
+        $result = $this->conn->execute_query("SELECT COUNT(id_section) as Devices, id_section, device.id_device, device_type.name FROM section LEFT JOIN device ON section.id_section = device.device_section_id LEFT JOIN device_type ON device.device_type_id = device_type.id_type WHERE section.id_section=? GROUP BY device.name;",[$sectionID]);
+        while ($row = $result->fetch_array()) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+
 
 }
