@@ -91,5 +91,22 @@ class Section
 
     }
 
+    public function getSectionDeviceAggregate(): array
+    {
+        $DB = new DB();
+        $devicesPresent = [
+            'Temperature' => 0,
+            'Humidity' => 0,
+            'Light' => 0,
+        ];
+        foreach ($DB->getDeviceTypeSection($this->id) as $device) {
+            $devicesPresent[$device['name']] = $device['amount'];
+        }
+        $DB->closeConnection();
+
+        return $devicesPresent;
+
+    }
+
 
 }

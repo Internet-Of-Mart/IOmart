@@ -145,7 +145,7 @@ class DB
     {
         $data = [];
 
-        $result = $this->conn->execute_query("SELECT COUNT(id_section) as Devices, id_section, device.id_device, device_type.name FROM section LEFT JOIN device ON section.id_section = device.device_section_id LEFT JOIN device_type ON device.device_type_id = device_type.id_type WHERE section.id_section=? GROUP BY device.name;",[$sectionID]);
+        $result = $this->conn->execute_query("SELECT COUNT(id_section) as amount, id_section, device.id_device, device_type.name FROM section LEFT JOIN device ON section.id_section = device.device_section_id LEFT JOIN device_type ON device.device_type_id = device_type.id_type WHERE section.id_section=? GROUP BY device.name;",[$sectionID]);
         while ($row = $result->fetch_array()) {
             $data[] = $row;
         }
