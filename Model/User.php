@@ -113,7 +113,7 @@ class User
 
     /**
      * Returns User Object if login is successful
-    */
+     */
     public static function login($username, $password): ?User
     {
         $DB = new DB();
@@ -128,7 +128,10 @@ class User
 
     public static function getSessionUser()
     {
-        session_start();
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+
         return json_decode($_SESSION['user']);
     }
 
