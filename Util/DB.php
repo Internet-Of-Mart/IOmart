@@ -137,7 +137,7 @@ class DB
     {
         $data = [];
 
-        $result = $this->conn->execute_query("SELECT section.id_section, section.store_id, section.name FROM section LEFT JOIN store ON section.store_id = store.id_store WHERE id_store=?;",[$storeID]);
+        $result = $this->conn->execute_query("SELECT section.id_section, section.store_id, section.name FROM section LEFT JOIN store ON section.store_id = store.id_store WHERE id_store=?;", [$storeID]);
         while ($row = $result->fetch_array()) {
             $data[] = $row;
         }
@@ -151,7 +151,7 @@ class DB
     {
         $data = [];
 
-        $result = $this->conn->execute_query("SELECT COUNT(id_section) as amount, id_section, device.id_device, device_type.name FROM section LEFT JOIN device ON section.id_section = device.device_section_id LEFT JOIN device_type ON device.device_type_id = device_type.id_type WHERE section.id_section=? GROUP BY device.name;",[$sectionID]);
+        $result = $this->conn->execute_query("SELECT COUNT(id_section) as amount, id_section, device.id_device, device_type.name FROM section LEFT JOIN device ON section.id_section = device.device_section_id LEFT JOIN device_type ON device.device_type_id = device_type.id_type WHERE section.id_section=? GROUP BY device.name;", [$sectionID]);
         while ($row = $result->fetch_array()) {
             $data[] = $row;
         }
@@ -165,7 +165,7 @@ class DB
     {
         $data = [];
 
-        $result = $this->conn->execute_query("SELECT store.name, sum(sensor_data.value) as `value`, date_format(sensor_data.time, '%Y-%m-%d') as `date` FROM sensor_data LEFT JOIN sensor ON sensor_data.sensor_id = sensor.id_sensor LEFT JOIN section ON sensor.sensor_section_id = section.id_section LEFT JOIN store ON section.store_id = store.id_store WHERE sensor.sensor_type_id=? AND store.id_store=? GROUP BY sensor_data.time, store.name;",[$sensorType,$storeID]);
+        $result = $this->conn->execute_query("SELECT store.name, sum(sensor_data.value) as `value`, date_format(sensor_data.time, '%Y-%m-%d') as `date` FROM sensor_data LEFT JOIN sensor ON sensor_data.sensor_id = sensor.id_sensor LEFT JOIN section ON sensor.sensor_section_id = section.id_section LEFT JOIN store ON section.store_id = store.id_store WHERE sensor.sensor_type_id=? AND store.id_store=? GROUP BY sensor_data.time, store.name;", [$sensorType, $storeID]);
         while ($row = $result->fetch_array()) {
             $data[] = $row;
         }
@@ -179,11 +179,69 @@ class DB
     {
         $data = [];
 
-        $result = $this->conn->execute_query("SELECT credentials.username FROM credentials WHERE credentials.username=?",[$username]);
+        $result = $this->conn->execute_query("SELECT credentials.username FROM credentials WHERE credentials.username=?", [$username]);
         while ($row = $result->fetch_array()) {
             $data[] = $row;
         }
         return $data;
+    }
+
+    /**
+     * GETS a usersID position
+     **/
+    public function getUserPositions($userID): array
+    {
+        $data = [];
+
+        $result = $this->conn->execute_query("SELECT * FROM position WHERE position.user_id=?", [$userID]);
+        while ($row = $result->fetch_array()) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+
+    /**
+     * CREATES a users from RegistrationData (Credentials and Person)
+     **/
+    public function createUser($data)
+    {
+        $resultCredentials = $this->conn->execute_query(
+            "INSERT INTO credentials (username, password_hash) VALUES (?, ?)"
+            , [$data['username'], password_hash($data['password'], PASSWORD_BCRYPT)]);
+
+        $lastCredID = $this->conn->execute_query(
+            "SELECT MAX(id_credentials) as id FROM credentials;"
+            , []);
+
+        $lastCredID = $lastCredID->fetch_array()['id'];
+
+        $lastPersonID = $this->conn->execute_query(
+            "SELECT MAX(id_user)+1 as id FROM person;"
+            , []);
+
+        $lastPersonID = $lastPersonID->fetch_array()['id'];
+
+        $resultPerson = $this->conn->execute_query(
+            "INSERT INTO person (id_user, employee_number, first_name, last_name, email, telephone, address, date_of_birth, date_of_employment, credentials_id) VALUES (?,?,?,?,?,?,?,TIMESTAMP(?),TIMESTAMP(?),?)"
+            , [
+            $lastPersonID,
+            $data['employee_number'],
+            $data['first_name'],
+            $data['last_name'],
+            $data['email'],
+            $data['telephone'],
+            $data['address'],
+            $data['date_of_birth'],
+            $data['date_of_employment'],
+            $lastCredID
+        ]);
+
+        $resultPerson = $this->conn->execute_query(
+            "SELECT * FROM person WHERE id_user=?;"
+            , [$lastPersonID]);
+
+        return $resultPerson->fetch_array();
+
     }
 
 
