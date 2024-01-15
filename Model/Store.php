@@ -68,4 +68,18 @@ class Store
         return $stores;
     }
 
+    public static function getStoreTypeData($sensorType, $storeID): array
+    {
+        $DB = new DB();
+        $dataRaw = $DB->getStoreSensorTypeData($sensorType, $storeID);
+        $data = [];
+
+        foreach ($dataRaw as $dataRow) {
+            $data[] = json_encode($dataRow);
+        }
+
+        $DB->closeConnection();
+        return $data;
+    }
+
 }

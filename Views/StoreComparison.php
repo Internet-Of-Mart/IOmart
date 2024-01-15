@@ -1,6 +1,13 @@
 <?php
 include_once '../wrapper/header.php';
 include_once '../wrapper/session_checker.php';
+
+include_once($_SERVER['DOCUMENT_ROOT'] . '/Model/Store.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/Model/User.php');
+
+use model\Store;
+use model\User;
+
 ?>
 
 <div class="window">
@@ -24,6 +31,13 @@ include_once '../wrapper/session_checker.php';
             </div>
 
             <?php
+
+            $element = [];
+
+            foreach ((Store::getStoresAdmin(User::getSessionUser()->id)) as $s) {
+                $element = array_merge($element, (Store::getStoreTypeData(4,$s->id)));
+            }
+
             include_once "../Components/graph_MDS.php"
             ?>
 

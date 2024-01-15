@@ -1,18 +1,17 @@
+<?php /** @var Array $element */?>
+
 <div class="graph_window">
     <div id="my_dataviz"></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> </div>
     <script type="module">
         import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
-        let data_ = [
-            {name: 'StoreA', value: 140, date: new Date('2023-10-1')},
-            {name: 'StoreA', value: 138, date: new Date('2023-10-12')},
-            {name: 'StoreA', value: 188, date: new Date('2023-10-13')},
-            {name: 'StoreA', value: 201, date: new Date('2023-10-20')},
-            {name: 'StoreB', value: 95, date: new Date('2023-10-1')},
-            {name: 'StoreB', value: 112, date: new Date('2023-10-12')},
-            {name: 'StoreB', value: 120, date: new Date('2023-10-13')},
-            {name: 'StoreB', value: 70, date: new Date('2023-10-20')}
-        ]
+        let data_ = (<?php echo json_encode($element)?>)
+            .map(e => {
+                e = JSON.parse(e)
+                e.date = new Date(e.date)
+                return e
+            })
 
         let sumstat = d3.group(data_, d => d.name)
 
@@ -102,14 +101,22 @@
                 exit => (exit.remove())
             )
 
-    </script>
-</div>
+        $(document).ready(
+            () => {
+                for (let key of sumstat.keys()) { // Using the default iterator (could be `map.entries()` instead)
+                    let IDkey = key.replace(' ', '-')
+                    $(".graph_window")
+                        .after($("<div/>", {class: "store_index_container", id: `${IDkey}`}))
+                        .promise()
+                        .done((e) => {
+                            $(`#${IDkey}`)
+                                .append($("<div/>", {class: "color_box", style: `background-color: ${color(key)};`}))
+                                .append($("<a/>", {text: `${key}`}))
+                        })
 
-<div class="store_index_container">
-    <div class="color_box"></div>
-    <a>STORENAME</a>
-</div>
-<div class="store_index_container">
-    <div class="color_box" style="background-color: red"></div>
-    <a style="color: red">STORENAME</a>
+                }
+            }
+        )
+
+    </script>
 </div>
