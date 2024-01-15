@@ -1,4 +1,3 @@
-<div class="row_container">
 
     <div class="controlbox">
         <label class="controlbox_title">
@@ -51,4 +50,3 @@
             </div>
         </div>
     </div>
-</div>
