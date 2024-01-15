@@ -572,3 +572,7 @@ input {
 .svg-disabled {
     filter: invert(81%) sepia(97%) saturate(0%) hue-rotate(191deg) brightness(90%) contrast(81%);
 }
+
+.padding-right15 {
+    padding-right: 15px;
+}
