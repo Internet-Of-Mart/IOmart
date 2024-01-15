@@ -27,6 +27,9 @@ class Store
         );
     }
 
+    /**
+     * GETS ALL Stores that are of an Admin
+     **/
     public static function getStoresAdmin($userID): array
     {
         $DB = new DB();
@@ -41,6 +44,9 @@ class Store
         return $stores;
     }
 
+    /**
+     * GETS ALL Users of a store not Admin
+     **/
     public static function getStoreUsers($storeID): array
     {
         $DB = new DB();
@@ -54,6 +60,9 @@ class Store
         return $users;
     }
 
+    /**
+     * GETS ALL Store that the user has a position in
+     **/
     public static function getUserStores($userID): array
     {
         $DB = new DB();
@@ -68,6 +77,9 @@ class Store
         return $stores;
     }
 
+    /**
+     * GETS ALL data of a specific sensor type and store grouped by store and data time
+     **/
     public static function getStoreTypeData($sensorType, $storeID): array
     {
         $DB = new DB();
