@@ -1,8 +1,10 @@
 <?php /** @var Array $element */?>
+<?php /** @var String $yAxisLabel */?>
+
 
 <div class="graph_window">
     <div id="my_dataviz"></div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="module">
         import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 
@@ -59,7 +61,7 @@
 
         //Add the y-axis label
         svg.append("text")
-            .text("Kilowatt(Kw)")
+            .text("<?php echo $yAxisLabel?>")
             .attr("transform", "rotate(-90)")
             .style("text-anchor", "start")
             .style("fill", "black")
@@ -108,7 +110,7 @@
                     $(".graph_window")
                         .after($("<div/>", {class: "store_index_container", id: `${IDkey}`}))
                         .promise()
-                        .done((e) => {
+                        .done(() => {
                             $(`#${IDkey}`)
                                 .append($("<div/>", {class: "color_box", style: `background-color: ${color(key)};`}))
                                 .append($("<a/>", {text: `${key}`}))

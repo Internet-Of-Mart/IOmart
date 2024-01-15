@@ -32,10 +32,27 @@ use model\User;
 
             <?php
 
+            $sensorType = 0;
+
+            switch ($_GET['tab']) {
+                case 'lights':
+                    $sensorType = 4;
+                    $yAxisLabel = "Kilowatt(Kw)";
+                    break;
+                case 'temperature':
+                    $sensorType = 1;
+                    $yAxisLabel = "Temperature(C°)";
+                    break;
+                case 'humidity':
+                    $sensorType = 2;
+                    $yAxisLabel = "Humidity(%)";
+                    break;
+            }
+
             $element = [];
 
             foreach ((Store::getStoresAdmin(User::getSessionUser()->id)) as $s) {
-                $element = array_merge($element, (Store::getStoreTypeData(4,$s->id)));
+                $element = array_merge($element, (Store::getStoreTypeData($sensorType, $s->id)));
             }
 
             include_once "../Components/graph_MDS.php"
