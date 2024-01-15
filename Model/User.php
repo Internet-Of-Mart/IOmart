@@ -45,42 +45,7 @@ class User
         $this->position = $position;
     }
 
-
-    public static function generateManagerDemo(): User
-    {
-        /*TODO:Remove*/
-        return new User(
-            2,
-            'hello@email.com',
-            123,
-            'Adam',
-            "Smith",
-            33799,
-            'Paris 75001',
-            '01/01/1999',
-            '20/12/2019',
-            2
-        );
-    }
-
-    public static function generateAdminDemo(): User
-    {
-        /*TODO:Remove*/
-        return new User(
-            3,
-            'hello@email.com',
-            123,
-            'Leonardo',
-            "Di Caprio",
-            33799,
-            'Paris 75001',
-            '01/01/1999',
-            '20/12/2019',
-            1
-        );
-    }
-
-    public static function loadRaw($userRaw)
+    public static function loadRaw($userRaw): User
     {
         return new User(
             $userRaw['id_user'],
@@ -118,9 +83,13 @@ class User
     {
         $DB = new DB();
         $userDB = $DB->getUserCredentials($username)[0];
+        $newUser = $DB->getUserPositions($userDB['id_user']);
         $DB->closeConnection();
 
         if (password_verify($password, $userDB['password_hash'])) {
+            if (sizeof($newUser) == 0) {
+                $userDB['position_type'] = 1;
+            }
             return User::loadRaw($userDB);
         }
         return null;
@@ -133,6 +102,25 @@ class User
         }
 
         return json_decode($_SESSION['user']);
+    }
+
+    public static function username_exist($username): bool
+    {
+        $DB = new DB();
+        $rawData = $DB->checkUsername($username);
+        $DB->closeConnection();
+
+        return boolval($rawData);
+    }
+
+    public static function registerAdmin(Array $data): User
+    {
+        $DB = new DB();
+        $data = ($DB->createUser($data));
+        $DB->closeConnection();
+        $data['position_type'] = 1;
+
+        return User::loadRaw($data);
     }
 
 
