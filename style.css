@@ -275,7 +275,6 @@
     height: 5px;
     width: 40px;
     margin-right: 20px;
-    background-color: cornflowerblue;
     display:flex;
     justify-content: left;
     flex-direction: row;
@@ -549,13 +548,13 @@ input {
     cursor: pointer;
 }
 
+
 .section_row_container {
     height: 45%;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
     padding: 1%;
-
 }
 
 .storebox {
@@ -568,4 +567,8 @@ input {
     box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.16);
     text-align: center;
     margin: 30px;
+}
+
+.svg-disabled {
+    filter: invert(81%) sepia(97%) saturate(0%) hue-rotate(191deg) brightness(90%) contrast(81%);
 }

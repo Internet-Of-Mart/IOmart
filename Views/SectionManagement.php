@@ -8,14 +8,9 @@ include_once '../wrapper/session_checker.php';
 
         <?php
         include_once($_SERVER['DOCUMENT_ROOT'] . '/Model/Section.php');
-
         use model\Section;
 
-        $elements = [ /*Get data from db instead*/
-            Section::generateDemo1(),
-            Section::generateDemo2(),
-            Section::generateDemo3()
-        ];
+        $elements = Section::getStoreSections($_SESSION['store_id']);
 
         foreach ($elements as $element) {
             include '../Components/SectionManagementBox.php';

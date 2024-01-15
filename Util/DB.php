@@ -1,4 +1,5 @@
 <?php
+
 namespace Util;
 
 use mysqli;
@@ -103,7 +104,7 @@ class DB
 
     /**
      * GETS Store users that aren't admins
-    **/
+     **/
     public function getStoreUsers($storeID): array
     {
         $data = [];
@@ -123,6 +124,39 @@ class DB
         $data = [];
 
         $result = $this->conn->execute_query("SELECT * FROM store LEFT JOIN position ON store.id_store = position.store_id WHERE user_id = ?", [$userID]);
+        while ($row = $result->fetch_array()) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+
+    public function getStoreSections($storeID): array
+    {
+        $data = [];
+
+        $result = $this->conn->execute_query("SELECT section.id_section, section.store_id, section.name FROM section LEFT JOIN store ON section.store_id = store.id_store WHERE id_store=?;",[$storeID]);
+        while ($row = $result->fetch_array()) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+
+    public function getDeviceTypeSection($sectionID): array
+    {
+        $data = [];
+
+        $result = $this->conn->execute_query("SELECT COUNT(id_section) as amount, id_section, device.id_device, device_type.name FROM section LEFT JOIN device ON section.id_section = device.device_section_id LEFT JOIN device_type ON device.device_type_id = device_type.id_type WHERE section.id_section=? GROUP BY device.name;",[$sectionID]);
+        while ($row = $result->fetch_array()) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+
+    public function getStoreSensorTypeData($sensorType, $storeID): array
+    {
+        $data = [];
+
+        $result = $this->conn->execute_query("SELECT store.name, sum(sensor_data.value) as `value`, date_format(sensor_data.time, '%Y-%m-%d') as `date` FROM sensor_data LEFT JOIN sensor ON sensor_data.sensor_id = sensor.id_sensor LEFT JOIN section ON sensor.sensor_section_id = section.id_section LEFT JOIN store ON section.store_id = store.id_store WHERE sensor.sensor_type_id=? AND store.id_store=? GROUP BY sensor_data.time, store.name;",[$sensorType,$storeID]);
         while ($row = $result->fetch_array()) {
             $data[] = $row;
         }
