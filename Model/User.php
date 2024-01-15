@@ -135,5 +135,15 @@ class User
         return json_decode($_SESSION['user']);
     }
 
+    public static function username_exist($username): bool
+    {
+        $DB = new DB();
+        $rawData = $DB->checkUsername($username);
+        $DB->closeConnection();
+
+
+        return boolval($rawData);
+    }
+
 
 }

@@ -172,5 +172,19 @@ class DB
         return $data;
     }
 
+    /**
+     * GETS a username if the username exists
+     **/
+    public function checkUsername($username): array
+    {
+        $data = [];
+
+        $result = $this->conn->execute_query("SELECT credentials.username FROM credentials WHERE credentials.username=?",[$username]);
+        while ($row = $result->fetch_array()) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+
 
 }
