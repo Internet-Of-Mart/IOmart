@@ -130,6 +130,9 @@ class DB
         return $data;
     }
 
+    /**
+     * GETS All sections of a specific store
+     **/
     public function getStoreSections($storeID): array
     {
         $data = [];
@@ -141,6 +144,9 @@ class DB
         return $data;
     }
 
+    /**
+     * GETS the amount of devices in a specific section
+     **/
     public function getDeviceTypeSection($sectionID): array
     {
         $data = [];
@@ -152,6 +158,9 @@ class DB
         return $data;
     }
 
+    /**
+     * GETS the sensor data of a specific type and store
+     **/
     public function getStoreSensorTypeData($sensorType, $storeID): array
     {
         $data = [];
