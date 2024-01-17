@@ -1,8 +1,9 @@
+<?php /* @var Array $adminStores */?>
+
 <script>
     function openForm() {
         document.getElementById("add-user").style.display = "block";
     }
-
     function closeForm() {
         document.getElementById("add-user").style.display = "none";
     }
@@ -18,57 +19,22 @@
 <div class="store-form-popup" id="add-user">
 
     <h4>New User</h4>
-    <form action="" method="post">
+    <form action="../routing/utilAddUser.php" method="post">
+        <h5>Personal details</h5>
 
         <div class="fieldPadding15px">
-            <label for="associated_stores">Associated Stores:
-                <select name="associated_stores">
-                    <option value="store1">Store 1</option>
-                    <option value="store2">Store 2</option>
-                    <option value="store3">Store 3</option>
-                    <option value="store4">Store 4</option>
-                    <option value="store5">Store 5</option>
-                </select>
+            <label for="first_name">First Name:
+                <input type="text" name="first_name" required/>
             </label>
 
-            <label for="position">Position:
-                <select name="position">
-                    <option value="user">User</option>
-                    <option value="manager">Manager</option>
-                </select>
+            <label for="last_name">Last Name:
+                <input type="text" name="last_name" required/>
             </label>
         </div>
 
-        <hr style="margin: 20px"/>
-
         <div class="fieldPadding15px">
-            <label for="firstname">First Name:
-                <input type="text" name="firstname" required/>
-            </label>
-
-            <label for="lastname">Last Name:
-                <input type="text" name="lastname" required/>
-            </label>
-        </div>
-
-        <hr style="margin: 20px"/>
-
-        <div class="fieldPadding15px">
-            <label for="EmployeeNumber">Employee Number:
-                <input type="text" name="EmployeeNumber" required/>
-            </label>
-
-            <label for="EmploymentDate">Employment Date:
-                <input type="date" name="EmploymentDate" required/>
-            </label>
-        </div>
-
-        <hr style="margin: 20px"/>
-
-
-        <div class="fieldPadding15px">
-            <label for="DateOfBirth">Date of Birth:
-                <input type="date" name="DateOfBirth" required/>
+            <label for="date_of_birth">Date of Birth:
+                <input type="date" name="date_of_birth" required/>
             </label>
             <label for="address">Address:
                 <input type="text" name="address" required/>
@@ -78,13 +44,51 @@
             </label>
         </div>
 
-
         <label for="email">Email:
             <input type="email" name="email" required/>
         </label>
 
 
+        <hr style="margin: 20px"/>
+        <h5>Employment details</h5>
+
         <div class="fieldPadding15px">
+            <label for="associated_stores">Associated Store:
+                <select name="associated_stores">
+                    <?php
+                    foreach ($adminStores as $st) {
+                        echo "<option value='$st->name'>$st->name</option>";
+                    }
+                    ?>
+                </select>
+            </label>
+
+            <label for="position">Position:
+                <select name="position">
+                    <option value="2">User</option>
+                    <option value="3">Manager</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="fieldPadding15px">
+            <label for="employee_number">Employee Number:
+                <input type="text" name="employee_number" required/>
+            </label>
+
+            <label for="date_of_employment">Employment Date:
+                <input type="date" name="date_of_employment" required/>
+            </label>
+        </div>
+
+        <hr style="margin: 20px"/>
+        <h5>Credentials</h5>
+
+        <div class="fieldPadding15px">
+            <label for="username">Username:
+                <input type="text" name="username" required/>
+            </label>
+
             <label for="password">Password:
                 <input type="password" name="password" required/>
             </label>
