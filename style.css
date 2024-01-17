@@ -584,19 +584,6 @@ input {
     box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.16);
     text-align: center;
     margin: 30px;
-    overflow-x: scroll;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-}
-.outer{
-    display: inline-block;
-    width: 500px;
-    height: 100px;
-    white-space: nowrap;
-    position: relative;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
 }
 
 .svg-disabled {
