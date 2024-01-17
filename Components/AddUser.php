@@ -1,6 +1,3 @@
-<?php
-include_once '../wrapper/header.php';
-?>
 <div class="window_login">
     <img src="../Assets/IOmart%20Logo.png" alt="">
     <div class="AddUser_box">
@@ -73,7 +70,3 @@ include_once '../wrapper/header.php';
         </form>
     </div>
 </div>
-
-<?php
-include_once '../wrapper/footer.php';
-?>
