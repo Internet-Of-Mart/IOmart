@@ -172,12 +172,28 @@
     top: 0;
     position: fixed!important;
     background-color: #DDD6CD;
+    display: -webkit-flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.store_window{
+    height: 100%;
+    width: 85%;
+    left: 15%;
+    top: 0;
+    position: fixed!important;
+    background-color: #DDD6CD;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+    overflow: auto;
 }
-
 .tab_container {
     background-color: #F2EFEB;
     display: flex;
@@ -558,6 +574,7 @@ input {
 }
 
 .storebox {
+    display: inline-block;
     left: 300px;
     height: 200px;
     width: 300px;
@@ -567,6 +584,19 @@ input {
     box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.16);
     text-align: center;
     margin: 30px;
+    overflow-x: scroll;
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+.outer{
+    display: inline-block;
+    width: 500px;
+    height: 100px;
+    white-space: nowrap;
+    position: relative;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
 }
 
 .svg-disabled {

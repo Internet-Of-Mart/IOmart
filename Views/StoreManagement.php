@@ -3,6 +3,7 @@ include_once '../wrapper/header.php';
 include_once '../wrapper/session_checker.php';
 ?>
 <div class="window">
+<div class="store_window">
 
     <?php
 
@@ -20,6 +21,7 @@ include_once '../wrapper/session_checker.php';
     ?>
 
 
+</div>
 </div>
 <?php
 include_once '../wrapper/footer.php'
