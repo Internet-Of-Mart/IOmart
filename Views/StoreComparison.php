@@ -40,12 +40,12 @@ use model\User;
                     $yAxisLabel = "Kilowatt(Kw)";
                     break;
                 case 'temperature':
-                    $sensorType = 1;
-                    $yAxisLabel = "Temperature(C°)";
+                    $sensorType = 1; //TODO: Change the type to new DB data
+                    $yAxisLabel = "Kilowatt(Kw)";
                     break;
                 case 'humidity':
-                    $sensorType = 2;
-                    $yAxisLabel = "Humidity(%)";
+                    $sensorType = 2; //TODO
+                    $yAxisLabel = "Kilowatt(Kw)";
                     break;
             }
 
