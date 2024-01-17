@@ -53,11 +53,11 @@
         <h5>Employment details</h5>
 
         <div class="fieldPadding15px">
-            <label for="associated_stores">Associated Store:
-                <select name="associated_stores">
+            <label for="store-id">Associated Store:
+                <select name="store-id">
                     <?php
                     foreach ($adminStores as $st) {
-                        echo "<option value='$st->name'>$st->name</option>";
+                        echo "<option value='$st->id'>$st->name</option>";
                     }
                     ?>
                 </select>

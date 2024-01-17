@@ -113,7 +113,7 @@ class User
         return boolval($rawData);
     }
 
-    public static function registerAdmin(Array $data): User
+    public static function registerAdmin(array $data): User
     {
         $DB = new DB();
         $data = ($DB->createUser($data));
@@ -121,6 +121,15 @@ class User
         $data['position_type'] = 1;
 
         return User::loadRaw($data);
+    }
+
+    public static function createUser(array $data)
+    {
+        $DB = new DB();
+        $DB->createUser($data);
+        $userID = $DB->getMaxUserID();
+        $DB->associateUserStore($data['store-id'], $userID, $data['position']);
+        $DB->closeConnection();
     }
 
 

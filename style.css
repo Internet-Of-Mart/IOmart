@@ -613,8 +613,8 @@ input {
 .store-form-popup {
     display: none;
     position: fixed;
-    bottom: 10%;
-    right: 15%;
+    bottom: 35%;
+    margin:auto;
     border: 3px solid #f1f1f1;
     box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.16);
     z-index: 9;
