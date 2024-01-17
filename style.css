@@ -549,6 +549,23 @@ input {
 }
 
 
+.AddUser_box {
+    background-color: #fff;
+    padding: 1%;
+    height: 150%;
+    width: 50%;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    margin-bottom: 5%;
+}
+
+
 .section_row_container {
     height: 45%;
     display: flex;
@@ -576,3 +593,4 @@ input {
 .padding-right15 {
     padding-right: 15px;
 }
+
