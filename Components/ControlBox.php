@@ -9,8 +9,9 @@
         </label>
         <div class="button_inline_container">
             <div class="button_container">
-                <button>ON</button>
-                <button>OFF</button>
+<!--                FIXME make the element look at device state -->
+                <button class="active_on" style="<?php if ($element == 1) echo " "?>">ON</button>
+                <button class="active_off" style="<?php if ($element == 0) echo " "?>">OFF</button>
             </div>
         </div>
         <div class="value_display_container">

@@ -1,9 +1,18 @@
+<?php
+//Logic to figure out where you are
+$loc = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'], "/") +1);
+?>
+
 <div class="navbar">
+
     <div class="sub_navbar">
         <img src="../Assets/IOmart%20Logo.png">
-        <a href="/Views/UserManagement.php"> User Management </a>
-        <a href="/Views/StoreManagement.php"> Store Management </a>
-        <a href="/Views/StoreComparison.php"> Store Comparison </a>
+        <a style="<?php if ($loc == 'UserManagement.php') echo "background-color: #9f8c71; color: #ffffff"?>"
+           href="/Views/UserManagement.php"> User Management </a>
+        <a style="<?php if ($loc == 'StoreManagement.php') echo "background-color: #9f8c71; color: #ffffff"?>"
+           href="/Views/StoreManagement.php"> Store Management </a>
+        <a style="<?php if ($loc == 'StoreComparison.php') echo "background-color: #9f8c71; color: #ffffff"?>"
+           href="/Views/StoreComparison.php"> Store Comparison </a>
 
     </div>
     <div class="user-nav">
@@ -15,4 +24,5 @@
             </button>
         </form>
     </div>
+
 </div>
