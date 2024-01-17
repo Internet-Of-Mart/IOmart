@@ -37,7 +37,7 @@ include_once '../wrapper/session_checker.php';
     </div>
 
     <div class="store-form-popup" id="add-store">
-        <form action="../routing/utilStoreCreate.php" class="store-form-container">
+        <form action="../routing/utilStoreCreate.php" method="post" class="store-form-container">
             <label class="padding-right15" for="name">Store Name:
                 <input type="text" name="name" required/>
             </label>
