@@ -1,12 +1,14 @@
 <div class="navbar">
     <div class="sub_navbar">
         <img src="../Assets/IOmart%20Logo.png">
+        <a href="/routing/utilStoreDeselect.php">Admin Management</a>
         <a href="/Views/SectionManagement.php"> Section Management </a>
         <a href="/Views/StoreData.php"> Store Data</a>
     </div>
 
     <div class="sub_navbar">
         <h3>Control Panel</h3>
+
         <a href="/Views/Light.php"> Lights</a>
         <a href="/Views/Temperature.php"> Temperature </a>
         <a href ="/Views/Humidity.php">Humidity</a>
@@ -22,5 +24,4 @@
             </button>
         </form>
     </div>
-
 </div>
