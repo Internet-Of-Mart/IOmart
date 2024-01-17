@@ -31,10 +31,6 @@ include_once '../navbar.php';
                 // TODO: Add logic to retrieve sensors
                 // TODO: Rework sensor tab into graph sensor tab
 
-                if ($_GET['tab'] === null) {
-                    $path = strtok($_SERVER["REQUEST_URI"], '?') . '?tab=sections';
-                    header("location: $path");
-                }
 
                 if ($_GET['tab'] == 'sections') {
                     $elements = [ /*Get data from db instead*/
