@@ -2,27 +2,27 @@
 
 namespace model;
 
+include_once($_SERVER['DOCUMENT_ROOT'] . '/Util/DB.php');
+
+use Util\DB;
+
 class Section
 {
     public int $id;
     public string $name;
-    public int $set_value = 0;
-    public int $actual_value = 0;
-    public string $unit_type = '';
+    public int $set_value = 0; //FIXME: Remove
+    public int $actual_value = 0; //FIXME: Remove
+    public string $unit_type = ''; //FIXME: Remove
+    public int $store_id = 0;
 
-    /**
-     * @param int $id
-     * @param string $name
-     * @param int $set_value
-     * @param int $actual_value
-     */
-    public function __construct(int $id, string $name, int $set_value, int $actual_value, string $unit_type)
+    public function __construct(int $id, string $name, int $set_value, int $actual_value, string $unit_type, int $store_id)
     {
         $this->id = $id;
         $this->name = $name;
         $this->set_value = $set_value;
         $this->actual_value = $actual_value;
         $this->unit_type = $unit_type;
+        $this->store_id = $store_id;
     }
 
     public static function generateDemo1(): Section
@@ -32,7 +32,8 @@ class Section
             "Refrigerator Section",
             20,
             15,
-            "C"
+            "C",
+            0
         );
 
     }
@@ -44,7 +45,8 @@ class Section
             "Vegetable Section",
             25,
             5,
-            "C"
+            "C",
+            0
         );
     }
 
@@ -55,8 +57,55 @@ class Section
             "Cheese Section",
             19,
             11,
-            "C"
+            "C",
+            0
         );
+    }
+
+    public static function loadRaw($sectionRaw)
+    {
+        return new Section(
+            $sectionRaw['id_section'],
+            $sectionRaw['name'],
+            0,
+            0,
+            0,
+            $sectionRaw['store_id']
+        );
+
+    }
+
+    public static function getStoreSections($storeID): array
+    {
+        $DB = new DB();
+        $sectionsRaw = $DB->getStoreSections($storeID);
+        $DB->closeConnection();
+
+        $sections = [];
+
+        foreach ($sectionsRaw as $sc) {
+            $sections[] = self::loadRaw($sc);
+        }
+
+        return $sections;
+
+    }
+
+    public function getSectionDeviceAggregate(): array
+    {
+        $DB = new DB();
+        $devicesPresent = [
+            'Temperature' => 0,
+            'Humidity' => 0,
+            'Light' => 0,
+        ];
+        foreach ($DB->getDeviceTypeSection($this->id) as $device) {
+            $devicesPresent[$device['name']] = $device['amount'];
+        }
+        $DB->closeConnection();
+
+        return $devicesPresent;
+
     }
 
 

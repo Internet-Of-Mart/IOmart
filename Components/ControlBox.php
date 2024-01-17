@@ -1,4 +1,3 @@
-<div class="row_container">
 
     <div class="controlbox">
         <label class="controlbox_title">
@@ -13,7 +12,6 @@
                 <button>ON</button>
                 <button>OFF</button>
             </div>
-            <button class="auto_button">auto</button>
         </div>
         <div class="value_display_container">
             <div class="value_set_container">
@@ -52,4 +50,3 @@
             </div>
         </div>
     </div>
-</div>

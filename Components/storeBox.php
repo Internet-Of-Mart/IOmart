@@ -3,7 +3,7 @@ include_once($_SERVER['DOCUMENT_ROOT'] . '/Model/Store.php');
 use model\Store;
 ?>
 
-<div class="controlbox">
+<div class="storebox">
     <div class="Storebox">
         <h4><?php echo $element->name ?></h4>
         <div class="image_placeholder">
