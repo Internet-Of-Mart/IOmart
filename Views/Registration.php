@@ -9,7 +9,7 @@ include_once '../wrapper/header.php';
 
 
             <h5>Personal Data</h5>
-            <div style="display: flex">
+            <div class="fieldPadding15px">
                 <label class="padding-right15" for="last_name">Lastname:
                     <input type="text" name="last_name" required/>
                 </label>

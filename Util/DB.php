@@ -275,5 +275,29 @@ class DB
 
     }
 
+    public function associateUserStore(int $storeID, int $userID, int $positionID)
+    {
+        $resultPosition =$this->conn->execute_query(
+            "INSERT INTO position (user_id, store_id, position_type) VALUES (?,?,?)",
+            [
+                $userID,
+                $storeID,
+                $positionID
+            ]
+        );
+
+        return boolval($resultPosition);
+    }
+
+    public function getMaxUserID()
+    {
+        $lastUserID = $this->conn->execute_query(
+            "SELECT MAX(id_user) as id FROM person;"
+            , []);
+
+        return $lastUserID->fetch_array()['id'];
+
+    }
+
 
 }
