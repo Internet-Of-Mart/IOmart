@@ -244,5 +244,36 @@ class DB
 
     }
 
+    /**
+     * CREATE a Store of a specific admin
+     */
+    public function createStore($storeName, $storeAddress, $userID): bool
+    {
+        $resultStore = $this->conn->execute_query(
+            "INSERT INTO store (name, address) VALUES (?,?);",
+            [
+                $storeName,
+                $storeAddress,
+            ]);
+
+        $lastStoreID = $this->conn->execute_query(
+            "SELECT MAX(id_store) as id FROM store;"
+            , []);
+
+        $lastStoreID = $lastStoreID->fetch_array()['id'];
+
+        $resultPosition =$this->conn->execute_query(
+            "INSERT INTO position (user_id, store_id, position_type) VALUES (?,?,?)",
+            [
+                $userID,
+                $lastStoreID,
+                1
+            ]
+        );
+
+        return $resultStore && $resultPosition;
+
+    }
+
 
 }

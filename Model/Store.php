@@ -94,4 +94,14 @@ class Store
         return $data;
     }
 
+    /**
+     * CREATE store of a user admin
+     */
+    public static function createStore(String $name, String $address, Int $id)
+    {
+        $DB = new DB();
+        $DB->createStore($name, $address, $id);
+        $DB->closeConnection();
+    }
+
 }
