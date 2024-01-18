@@ -347,4 +347,16 @@ class DB
         return $data;
     }
 
+    /**
+     **create a Section
+     **/
+    public function CreateSection(string $section_name,$userID):bool
+    {
+        $resultsection = $this->conn->execute_query(
+            "INSERT INTO section(name)VALUES (?);",
+            [ $section_name]
+        );
+
+    }
+
 }
