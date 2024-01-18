@@ -10,18 +10,12 @@ class Section
 {
     public int $id;
     public string $name;
-    public int $set_value = 0; //FIXME: Remove
-    public int $actual_value = 0; //FIXME: Remove
-    public string $unit_type = ''; //FIXME: Remove
     public int $store_id = 0;
 
-    public function __construct(int $id, string $name, int $set_value, int $actual_value, string $unit_type, int $store_id)
+    public function __construct(int $id, string $name, int $store_id)
     {
         $this->id = $id;
         $this->name = $name;
-        $this->set_value = $set_value;
-        $this->actual_value = $actual_value;
-        $this->unit_type = $unit_type;
         $this->store_id = $store_id;
     }
 

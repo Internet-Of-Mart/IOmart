@@ -1,24 +1,25 @@
 
     <div class="controlbox">
         <label class="controlbox_title">
-            <?php /** @var Device $element */
+            <?php
             include_once($_SERVER['DOCUMENT_ROOT'] . '/Model/Device.php');
             use model\Device;
+            /** @var Device $element */
             echo $element->name;
             ?>
         </label>
         <div class="button_inline_container">
             <div class="button_container">
-<!--                FIXME make the element look at device state -->
-                <button class="active_on" style="<?php if ($element == 1) echo " "?>">ON</button>
-                <button class="active_off" style="<?php if ($element == 0) echo " "?>">OFF</button>
+                <button class="<?php if ($element->state == 1) echo 'active_on';?>">ON</button>
+                <button class="<?php if ($element->state == 0) echo 'active_off';?>">OFF</button>
             </div>
         </div>
         <div class="value_display_container">
             <div class="value_set_container">
                 <div class="value_inline_container">
                     <label>
-                        <?php echo $element->set_value .' '. $element->unit_type?>
+                        <?php
+                        echo $element->set_value .' '. $element->unit_type?>
                     </label>
                     <div class="arrow_button_container">
                         <button>
@@ -42,7 +43,8 @@
             <div class="value_set_container">
                 <div class="value_inline_container">
                     <label>
-                        <?php echo $element->actual_value .' '. $element->unit_type?>
+                        <?php
+                        echo $element->actual_value .' '.  $element->unit_type?>
                     </label>
                 </div>
                 <div>

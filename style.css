@@ -52,8 +52,8 @@
 
 .controlbox {
     left: 300px;
-    height: 250px;
-    width: 300px;
+    height: 225px;
+    width: 250px;
     background-color: #FFFFFF;
     border-radius: 25px;
     padding: 30px;
@@ -69,7 +69,6 @@
 .button_container button {
     height: 50px;
     width: 100px;
-    background-color: #858585;
     margin-right: -4px;
 }
 
@@ -582,7 +581,6 @@ input {
 
 
 .section_row_container {
-    height: 45%;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
@@ -604,6 +602,18 @@ input {
 
 .svg-disabled {
     filter: invert(81%) sepia(97%) saturate(0%) hue-rotate(191deg) brightness(90%) contrast(81%);
+}
+
+.Lightcontrolbox {
+    left: 300px;
+    height: 100px;
+    width: 250px;
+    background-color: #FFFFFF;
+    border-radius: 25px;
+    padding: 30px;
+    box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.16);
+    text-align: center;
+    margin: 30px;
 }
 
 .padding-right15 {
@@ -637,4 +647,5 @@ input {
     margin-top: 5px;
     margin-bottom: 5px;
     padding-right: 15px;
+
 }
