@@ -20,9 +20,7 @@ include_once '../wrapper/session_checker.php';
         }
 
         ?>
-
         <?php include '../Components/AddStore.php' ?>
-
     </div>
 </div>
 <?php
