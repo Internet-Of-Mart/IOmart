@@ -103,5 +103,15 @@ class Device
         return $device;
     }
 
+    /** Change the device from on(1) to off(0) or the other way back */
+    public static function changeDeviceSetValue($deviceID, $newValue): bool
+    {
+        $DB = new DB();
+        $device = $DB->modifyDeviceSetValue($deviceID, $newValue);
+        $DB->closeConnection();
+
+        return $device;
+    }
+
 
 }
