@@ -55,7 +55,7 @@ include_once '../navbar.php';
                     }
                 }
                 if ($_GET['tab'] == 'overview') {
-                    include "../Components/graph_1DS.php";
+                    include "../Components/graph_MDS.php";
                 }
                 ?>
 
