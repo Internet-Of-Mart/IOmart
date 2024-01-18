@@ -5,17 +5,51 @@ include_once '../wrapper/header.php';
     <img src="../Assets/IOmart%20Logo.png" alt="">
     <div class="Registration_box">
         <h4>Registration</h4>
-        <form action="" method="post">
+        <form action="../routing/utilRegistration.php" method="post">
 
-            <label for="EmployeeNumber">Employee Number:
-            <input type="text" name="EmployeeNumber" required/>
+
+            <h5>Personal Data</h5>
+            <div class="fieldPadding15px">
+                <label class="padding-right15" for="last_name">Lastname:
+                    <input type="text" name="last_name" required/>
+                </label>
+
+                <label class="padding-right15" for="first_name">Firstname:
+                    <input type="text" name="first_name" required/>
+                </label>
+            </div>
+
+            <label for="email">Email:
+                <input type="email" name="email" required/>
             </label>
 
-            <label for="username">Firstname:
-                <input type="text" name="username" required/>
+            <label for="telephone">Telephone:
+                <input type="tel" name="telephone" required/>
             </label>
 
-            <label for="username">Lastname:
+            <label for="address">Address:
+                <input type="text" name="address" required/>
+            </label>
+
+            <label for="date_of_birth">DateOfBirth:
+                <input type="date" name="date_of_birth" required/>
+            </label>
+
+            <hr style="margin: 20px"/>
+            <h5>Employment Data</h5>
+
+            <label for="employee_number">Employee Number:
+                <input type="text" name="employee_number" required/>
+            </label>
+
+            <label for="date_of_employment">EmploymentDate:
+                <input type="date" name="date_of_employment" required/>
+            </label>
+
+            <hr style="margin: 20px"/>
+            <h5>Credentials</h5>
+
+            <label for="username">Username:
                 <input type="text" name="username" required/>
             </label>
 
@@ -27,25 +61,6 @@ include_once '../wrapper/header.php';
                 <input type="password" name="confirm password" required/>
             </label>
 
-            <label for="email">Email:
-                <input type="email" name="email" required/>
-            </label>
-
-            <label for="Telephone">Telephone:
-                <input type="tel" name="telephone" required/>
-            </label>
-
-            <label for="address">Address:
-                <input type="text" name="address" required/>
-            </label>
-
-            <label for="DateOfBirth">DateOfBirth:
-                <input type="date" name="DateOfBirth" required/>
-            </label>
-
-            <label for="EmploymentDate">EmploymentDate:
-                <input type="date" name="username" required/>
-            </label>
             <button type="submit">Create</button>
         </form>
     </div>

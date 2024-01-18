@@ -21,7 +21,7 @@ include_once '../wrapper/session_checker.php';
             }
 
             if ($_GET['tab'] == 'overview') {
-                include_once '../Components/graph_1DS.php';
+                include_once '../Components/graph_MDS.php';
             }
 
 

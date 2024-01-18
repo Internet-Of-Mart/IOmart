@@ -23,11 +23,14 @@ use model\User;
 
             <div class="tab_container">
                 <a href="<?php
-                echo strtok($_SERVER["REQUEST_URI"], '?') . '?tab=lights' ?>">Lights</a>
+                echo strtok($_SERVER["REQUEST_URI"], '?') . '?tab=lights' ?>"
+                   style="<?php if ($_GET['tab'] == 'lights') echo "background-color: #9f8c71; color: #ffffff"?>">Lights</a>
                 <a href="<?php
-                echo strtok($_SERVER["REQUEST_URI"], '?') . '?tab=temperature' ?>">Temp</a>
+                echo strtok($_SERVER["REQUEST_URI"], '?') . '?tab=temperature' ?>"
+                   style="<?php if ($_GET['tab'] == 'temperature') echo "background-color: #9f8c71; color: #ffffff"?>">Temp</a>
                 <a href="<?php
-                echo strtok($_SERVER["REQUEST_URI"], '?') . '?tab=humidity' ?>">Humidity</a>
+                echo strtok($_SERVER["REQUEST_URI"], '?') . '?tab=humidity' ?>"
+                   style="<?php if ($_GET['tab'] == 'humidity') echo "background-color: #9f8c71; color: #ffffff"?>">Humidity</a>
             </div>
 
             <?php
@@ -40,12 +43,12 @@ use model\User;
                     $yAxisLabel = "Kilowatt(Kw)";
                     break;
                 case 'temperature':
-                    $sensorType = 1;
-                    $yAxisLabel = "Temperature(C°)";
+                    $sensorType = 5;
+                    $yAxisLabel = "Kilowatt(Kw)";
                     break;
                 case 'humidity':
-                    $sensorType = 2;
-                    $yAxisLabel = "Humidity(%)";
+                    $sensorType = 6;
+                    $yAxisLabel = "Kilowatt(Kw)";
                     break;
             }
 
