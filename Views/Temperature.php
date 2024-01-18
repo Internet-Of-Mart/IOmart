@@ -11,9 +11,13 @@ include_once '../wrapper/session_checker.php';
             <?php
             include_once($_SERVER['DOCUMENT_ROOT'] . '/Model/Section.php');
             include_once($_SERVER['DOCUMENT_ROOT'] . '/Model/Device.php');
+            include_once($_SERVER['DOCUMENT_ROOT'] . '/Model/Store.php');
+
 
             use model\Section;
             use model\Device;
+            use model\Store;
+
 
             if ($_GET['tab'] === null) {
                 $path = strtok($_SERVER["REQUEST_URI"], '?') . '?tab=devices';
@@ -21,6 +25,7 @@ include_once '../wrapper/session_checker.php';
             }
 
             if ($_GET['tab'] == 'overview') {
+                $element = Store::getStoreTypeData(5, $_SESSION['store_id']);
                 include_once '../Components/graph_MDS.php';
             }
 
@@ -30,7 +35,7 @@ include_once '../wrapper/session_checker.php';
                 $elements = Section::getStoreSections($_SESSION['store_id']);
                 foreach ($elements as $element) {
                     $devices = Device::getSectionDeviceData($element->id, 2);
-                    if(count($devices) < 1) continue;
+                    if (count($devices) < 1) continue;
                     $section = $element;
                     include '../Components/SectionRow.php';
                 }
