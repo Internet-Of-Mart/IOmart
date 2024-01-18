@@ -357,4 +357,16 @@ class DB
         return boolval($deviceMod);
     }
 
+    /** Change all devices from on(1) to off(0) or the other way back of a certain store */
+    public function modifyDeviceStateBulk($newState, $storeId, $devType): bool
+    {
+        $devBulk = $this->conn->execute_query(
+            "UPDATE device LEFT JOIN section ON device.device_section_id = section.id_section LEFT JOIN store ON section.store_id = store.id_store SET state=? WHERE store_id=? AND device_type_id=?;",
+            [$newState, $storeId, $devType]
+        );
+        return boolval($devBulk);
+
+
+    }
+
 }

@@ -91,7 +91,16 @@ class Device
         $DB->closeConnection();
 
         return $device;
+    }
 
+    /** Change all devices from on(1) to off(0) or the other way back of a certain store */
+    public static function changeActiveStateBulk($storeId, $devType, $newState): bool
+    {
+        $DB = new DB();
+        $device = $DB->modifyDeviceStateBulk($newState, $storeId, $devType);
+        $DB->closeConnection();
+
+        return $device;
     }
 
 
