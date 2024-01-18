@@ -365,8 +365,16 @@ class DB
             [$newState, $storeId, $devType]
         );
         return boolval($devBulk);
+    }
 
+    /** Change the device from on(1) to off(0) or the other way back */
+    public function modifyDeviceSetValue($deviceID, $state): bool
+    {
+        $deviceMod = $this->conn->execute_query(
+            "UPDATE control_type SET set_value=? WHERE control_type.device_id=?;"
+            , [$state, $deviceID]);
 
+        return boolval($deviceMod);
     }
 
 }
