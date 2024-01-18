@@ -7,6 +7,7 @@ $loc = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'], "/") +1)
 
     <div class="sub_navbar">
         <img src="../Assets/IOmart%20Logo.png">
+        <a href="/routing/utilStoreDeselect.php">Admin Management</a>
         <a style="<?php if ($loc == 'SectionManagement.php') echo "background-color: #9f8c71; color: #ffffff"?>"
            href="/Views/SectionManagement.php"> Section Management </a>
         <a style="<?php if ($loc == 'StoreData.php') echo "background-color: #9f8c71; color: #ffffff"?>"
