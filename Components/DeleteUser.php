@@ -1,35 +1,34 @@
 <?php
 /** @var User $element */
-/** @var int $even */
 use model\User;
 ?>
 
 <script>
-    function openDeleteForm() {
-        document.getElementById("delete-user").style.display = "block";
-        document.getElementById("action-fade").style.display = "block";
+    function openDeleteForm<?php echo $element->id?>() {
+        document.getElementById("delete-user-" + <?php echo $element->id?>).style.display = "block";
+        document.getElementById("action-fade-" + <?php echo $element->id?>).style.display = "block";
     }
 
-    function closeDeleteForm() {
-        document.getElementById("delete-user").style.display = "none";
-        document.getElementById("action-fade").style.display = "none";
+    function closeDeleteForm<?php echo $element->id?>() {
+        document.getElementById("delete-user-" + <?php echo $element->id?>).style.display = "none";
+        document.getElementById("action-fade-" + <?php echo $element->id?>).style.display = "none";
 
     }
 </script>
 
-<button class="active_off" onclick="openDeleteForm()">
+<button class="active_off" onclick="openDeleteForm<?php echo $element->id?>()">
     <?php include '../Assets/deleteSvg.php'?>
 </button>
 
-<div class="form-popup" id="delete-user">
+<div class="form-popup" id="<?php echo "delete-user-" . $element->id?>">
     <label>
         Do you wish to delete <?php echo $element->firstname . " " . $element->lastname?> ?
     </label>
     <form action="../routing/utilDeleteUser.php" method="post" class="store-form-container">
         <button type="submit" class="active_off">Delete User</button>
-        <button type="button" class="edit_btn cancel" onclick="closeDeleteForm()">Cancel</button>
+        <button type="button" class="edit_btn cancel" onclick="closeDeleteForm<?php echo $element->id?>()">Cancel</button>
     </form>
 </div>
-<div id="action-fade" class="black-fade"></div>
+<div id="<?php echo "action-fade-" . $element->id?>" class="black-fade"></div>
 
 
