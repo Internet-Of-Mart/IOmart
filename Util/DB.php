@@ -362,4 +362,12 @@ class DB
 
         return $resultStore;
     }
+
+    public function deleteStore($storeID): bool
+    {
+        $resultStore = $this->conn->execute_query(
+            "DELETE FROM store WHERE store.id_store = ?;", [$storeID]);
+
+        return $resultStore;
+    }
 }

@@ -114,4 +114,14 @@ class Store
         $DB->closeConnection();
     }
 
+    /**
+     * DELETE store
+     **/
+    public static function deleteStore(Int $id)
+    {
+        $DB = new DB();
+        $DB->deleteStore($id);
+        $DB->closeConnection();
+    }
+
 }

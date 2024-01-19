@@ -15,10 +15,21 @@ use model\Store;
     function closeForm2() {
         document.getElementById("edit-store").style.display = "none";
     }
-</script>
 
-<div class="storebox">
-    <h3><?php echo $element->name ?></h3>
+    function confirmDelete(id) {
+        if (confirm("Delete Store?")){
+            document.getElementById("id").value = id;
+            document.getElementById("btnDelete").value = "1";
+            document.forms['edit-store'].submit();
+        } else {
+            window.location.href = '../Views/StoreManagement.php';
+            return false;
+         }
+     }
+ </script>
+
+ <div class="storebox">
+     <h3><?php echo $element->name ?></h3>
     <div class="image_placeholder">
         <svg xmlns="http://www.w3.org/2000/svg" height="48" width="60" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M36.8 192H603.2c20.3 0 36.8-16.5 36.8-36.8c0-7.3-2.2-14.4-6.2-20.4L558.2 21.4C549.3 8 534.4 0 518.3 0H121.7c-16 0-31 8-39.9 21.4L6.2 134.7c-4 6.1-6.2 13.2-6.2 20.4C0 175.5 16.5 192 36.8 192zM64 224V384v80c0 26.5 21.5 48 48 48H336c26.5 0 48-21.5 48-48V384 224H320V384H128V224H64zm448 0V480c0 17.7 14.3 32 32 32s32-14.3 32-32V224H512z"/></svg>
     </div>
@@ -42,8 +53,9 @@ use model\Store;
             <label for="address">Address:
                 <input type="text" id="address" name="address" required value="" />
             </label>
-            <button type="submit" class="btn">Save</button>
+            <button name='btnSave' type="submit" class="btn">Save</button>
             <button type="button" class="btn cancel" onclick="closeForm2()">Cancel</button>
+            <button name='btnDelete' type="submit" class="button_del" onclick="return confirmDelete(<?php echo $element->id ?>)">Delete</button>
         </form>
     </div>
 </div>

@@ -640,9 +640,12 @@ input {
     margin-top: 5px;
     margin-bottom: 5px;
     padding-right: 15px;
-
 }
 
+.button_del {
+    background-color: #F29292 ;
+    margin-left:10%;
+}
 
 
 
