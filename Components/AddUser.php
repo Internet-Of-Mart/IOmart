@@ -3,9 +3,12 @@
 <script>
     function openAddForm() {
         document.getElementById("add-user").style.display = "block";
+        document.getElementById("action-fade").style.display = "block";
+
     }
     function closeAddForm() {
         document.getElementById("add-user").style.display = "none";
+        document.getElementById("action-fade").style.display = "none";
     }
 </script>
 
@@ -103,3 +106,4 @@
     </form>
 
 </div>
+<div id="<?php echo "action-fade"?>" class="black-fade"></div>
