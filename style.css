@@ -636,12 +636,16 @@ input {
     display: none;
     position: fixed;
     bottom: 35%;
-    margin:auto;
+    left: 40vw;
     border: 3px solid #f1f1f1;
     box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.16);
     z-index: 9;
     background: white;
     padding: 10px;
+}
+
+.store-form-popup button {
+    height: 25px;
 }
 
 .form-popup {
