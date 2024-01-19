@@ -10,9 +10,8 @@ use model\User;
     <label><?php echo $element->email?></label>
 
     <div >
-        <button class="edit_btn">
-            <?php include '../Assets/editSvg.php'?>
-        </button>
+
+        <?php include '../Components/EditUser.php'?>
         <?php include '../Components/DeleteUser.php'?>
 
     </div>
