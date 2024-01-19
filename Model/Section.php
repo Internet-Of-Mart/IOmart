@@ -85,6 +85,13 @@ class Section
 
     }
 
+    public static function delete(int $section_id)
+    {
+        $DB = new DB();
+        $sect = $DB->deleteSection($section_id);
+        $DB->closeConnection();
+    }
+
     public function getSectionDeviceAggregate(): array
     {
         $DB = new DB();
