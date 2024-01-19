@@ -1,7 +1,11 @@
 <?php
 /** @var User $element */
+
 /* @var Array $adminStores */
+
 use model\User;
+use model\Store;
+
 ?>
 
 
@@ -18,11 +22,11 @@ use model\User;
     }
 </script>
 
-<button class="edit_btn" onclick="openEditForm<?php echo $element->id?>()">
-    <?php include '../Assets/editSvg.php'?>
+<button class="edit_btn" onclick="openEditForm<?php echo $element->id ?>()">
+    <?php include '../Assets/editSvg.php' ?>
 </button>
 
-<div class="store-form-popup" id="<?php echo "edit-user-" . $element->id?>">
+<div class="store-form-popup" id="<?php echo "edit-user-" . $element->id ?>">
 
     <h4>Editing User</h4>
     <form action="../routing/utilEditUser.php" method="post" style="display: flex; flex-direction: column">
@@ -32,28 +36,28 @@ use model\User;
 
         <div class="fieldPadding15px">
             <label for="first_name">First Name:
-                <input type="text" name="first_name" required/>
+                <input type="text" name="first_name" value="<?php echo $element->firstname ?>" required/>
             </label>
 
             <label for="last_name">Last Name:
-                <input type="text" name="last_name" required/>
+                <input type="text" name="last_name" value="<?php echo $element->lastname ?>" required/>
             </label>
         </div>
 
         <div class="fieldPadding15px">
             <label for="date_of_birth">Date of Birth:
-                <input type="date" name="date_of_birth" required/>
+                <input type="date" name="date_of_birth" value="<?php echo $element->dob ?>" required/>
             </label>
             <label for="address">Address:
-                <input type="text" name="address" required/>
+                <input type="text" name="address" value="<?php echo $element->address ?>" required/>
             </label>
             <label for="telephone">Telephone:
-                <input type="tel" name="telephone" required/>
+                <input type="tel" name="telephone" value="<?php echo $element->telephone ?>" required/>
             </label>
         </div>
 
         <label for="email">Email:
-            <input type="email" name="email" required/>
+            <input type="email" name="email" value="<?php echo $element->email ?>" required/>
         </label>
 
 
@@ -64,8 +68,13 @@ use model\User;
             <label for="store-id">Associated Store:
                 <select name="store-id">
                     <?php
+                    $userStores = Store::getUserStores($element->id);
+                    $storesID = array_map(function ($s) { return $s->id; }, $userStores);
+
                     foreach ($adminStores as $st) {
-                        echo "<option value='$st->id'>$st->name</option>";
+                        $select = '';
+                        if (in_array($st->id, $storesID)) echo $select = 'selected';
+                        echo "<option " . $select . " value='$st->id'>$st->name</option>";
                     }
                     ?>
                 </select>
@@ -73,19 +82,19 @@ use model\User;
 
             <label for="position">Position:
                 <select name="position">
-                    <option value="2">User</option>
-                    <option value="3">Manager</option>
+                    <option <?php if ($element->position == 2) echo 'selected' ?> value="3">Manager</option>
+                    <option <?php if ($element->position == 3) echo 'selected' ?> value="2">User</option>
                 </select>
             </label>
         </div>
 
         <div class="fieldPadding15px">
             <label for="employee_number">Employee Number:
-                <input type="text" name="employee_number" required/>
+                <input type="text" name="employee_number" value="<?php echo $element->employee_number ?>" required/>
             </label>
 
             <label for="date_of_employment">Employment Date:
-                <input type="date" name="date_of_employment" required/>
+                <input type="date" name="date_of_employment" value="<?php echo $element->do_employment ?>" required/>
             </label>
         </div>
 
@@ -109,8 +118,9 @@ use model\User;
         <div>
 
             <button type="submit" class="active_on">Edit User</button>
-            <button type="button" class="edit_btn cancel" onclick="closeEditForm<?php echo $element->id?>()">Cancel</button>
+            <button type="button" class="edit_btn cancel" onclick="closeEditForm<?php echo $element->id ?>()">Cancel
+            </button>
         </div>
     </form>
 </div>
-<div id="<?php echo "action-fade-" . $element->id?>" class="black-fade"></div>
+<div id="<?php echo "action-fade-" . $element->id ?>" class="black-fade"></div>
