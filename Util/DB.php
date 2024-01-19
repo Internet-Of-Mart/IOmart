@@ -263,7 +263,7 @@ class DB
 
         $lastStoreID = $lastStoreID->fetch_array()['id'];
 
-        $resultPosition =$this->conn->execute_query(
+        $resultPosition = $this->conn->execute_query(
             "INSERT INTO position (user_id, store_id, position_type) VALUES (?,?,?)",
             [
                 $userID,
@@ -278,7 +278,7 @@ class DB
 
     public function associateUserStore(int $storeID, int $userID, int $positionID)
     {
-        $resultPosition =$this->conn->execute_query(
+        $resultPosition = $this->conn->execute_query(
             "INSERT INTO position (user_id, store_id, position_type) VALUES (?,?,?)",
             [
                 $userID,
@@ -317,7 +317,7 @@ class DB
                 sensor_data
             GROUP BY
                 sensor_id
-            )   AS sensor_data ON sensor_data.sensor_id = sensor.id_sensor WHERE device.device_section_id=? AND device.device_type_id=?;",[$sectionID, $type]);
+            )   AS sensor_data ON sensor_data.sensor_id = sensor.id_sensor WHERE device.device_section_id=? AND device.device_type_id=?;", [$sectionID, $type]);
         while ($row = $result->fetch_array()) {
             $data[] = $row;
         }
@@ -340,11 +340,26 @@ class DB
         sensor_data
     GROUP BY
         sensor_id
-) AS sensor_data ON sensor_data.sensor_id = sensor.id_sensor WHERE store.id_store=? AND device.device_type_id=? ;",[$storeID, $type]);
+) AS sensor_data ON sensor_data.sensor_id = sensor.id_sensor WHERE store.id_store=? AND device.device_type_id=? ;", [$storeID, $type]);
         while ($row = $result->fetch_array()) {
             $data[] = $row;
         }
         return $data;
     }
 
+    /**
+     * EDIT store name and address
+     **/
+    public function editStore($storeID, $storeName, $storeAddress): bool
+    {
+        $resultStore = $this->conn->execute_query(
+            "UPDATE store SET store.name = ?, store.address = ? WHERE store.id_store = ?;",
+            [
+                $storeName,
+                $storeAddress,
+                $storeID
+            ]);
+
+        return $resultStore;
+    }
 }

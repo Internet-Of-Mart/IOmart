@@ -104,4 +104,14 @@ class Store
         $DB->closeConnection();
     }
 
+    /**
+     * EDIT store name and address
+     **/
+    public static function editStore(Int $id, String $name, String $address)
+    {
+        $DB = new DB();
+        $DB->editStore($id, $name, $address);
+        $DB->closeConnection();
+    }
+
 }

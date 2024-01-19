@@ -82,11 +82,12 @@
     justify-content: center;
 }
 
-.auto_button {
-    height: 35px;
-    width: 75px;
-    background-color: #F2EFEB;
-    margin-left: 4px;
+.edit_button {
+    height: 20px;
+    width: 20px;
+    background-color: #FFFFFF;
+    margin: 2px;
+    transform: translate(150px,0px);
 }
 
 .active_on {
