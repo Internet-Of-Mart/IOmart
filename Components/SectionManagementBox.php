@@ -26,7 +26,13 @@ $devicesAmount = $element->getSectionDeviceAggregate();
             ?>
 
         </div>
-        <button class="manage_button"> Manage Device/Sensor</button>
+        <div>
+            <button class="manage_button">
+                Manage Device/Sensor
+            </button>
+            <?php include '../Components/DeleteSection.php'?>
+        </div>
+
     </div>
 </div>
 

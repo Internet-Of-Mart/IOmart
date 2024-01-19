@@ -451,4 +451,12 @@ class DB
         return boolval($person);
     }
 
+    public function deleteSection($section_id)
+    {
+        $position = $this->conn->execute_query("DELETE FROM section WHERE id_section=?", [
+            $section_id
+        ]);
+        return boolval($position);
+    }
+
 }
