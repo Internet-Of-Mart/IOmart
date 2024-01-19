@@ -3,6 +3,7 @@
 namespace model;
 
 include_once($_SERVER['DOCUMENT_ROOT'] . '/Util/DB.php');
+
 use Util\DB;
 
 class Device
@@ -16,10 +17,11 @@ class Device
     public int $set_value;
     public string $unit_type;
     public int $actual_value;
+
     //    public string $maintenance;
 
 
-    public function __construct(int $id, int $section_id, string $name, int $type , string $type_name, int $state,  int $set_value, string $unit_type, int $actual_value /* string $maintenance*/)
+    public function __construct(int $id, int $section_id, string $name, int $type, string $type_name, int $state, int $set_value, string $unit_type, int $actual_value /* string $maintenance*/)
     {
         $this->id = $id;
         $this->type = $type;
@@ -50,10 +52,10 @@ class Device
     }
 
     /** Get ALL Device Data of Type in a Section */
-    public static function getSectionDeviceData($section_id,$type_name): array
+    public static function getSectionDeviceData($section_id, $type_name): array
     {
         $DB = new DB();
-        $deviceRaw = $DB->getSectionDeviceData($section_id,$type_name);
+        $deviceRaw = $DB->getSectionDeviceData($section_id, $type_name);
         $DB->closeConnection();
 
         $devices = [];
@@ -66,10 +68,10 @@ class Device
 
     }
 
-    public static function getStoreDeviceData($store_id,$type): array
+    public static function getStoreDeviceData($store_id, $type): array
     {
         $DB = new DB();
-        $deviceRaw = $DB->getStoreDeviceData($store_id,$type);
+        $deviceRaw = $DB->getStoreDeviceData($store_id, $type);
         $DB->closeConnection();
 
         $devices = [];
@@ -81,6 +83,35 @@ class Device
         return $devices;
     }
 
+    /** Change the device from on(1) to off(0) or the other way back */
+    public static function changeActiveStateDevice($deviceID, $newState): bool
+    {
+        $DB = new DB();
+        $device = $DB->modifyDeviceState($deviceID, $newState);
+        $DB->closeConnection();
+
+        return $device;
+    }
+
+    /** Change all devices from on(1) to off(0) or the other way back of a certain store */
+    public static function changeActiveStateBulk($storeId, $devType, $newState): bool
+    {
+        $DB = new DB();
+        $device = $DB->modifyDeviceStateBulk($newState, $storeId, $devType);
+        $DB->closeConnection();
+
+        return $device;
+    }
+
+    /** Change the device from on(1) to off(0) or the other way back */
+    public static function changeDeviceSetValue($deviceID, $newValue): bool
+    {
+        $DB = new DB();
+        $device = $DB->modifyDeviceSetValue($deviceID, $newValue);
+        $DB->closeConnection();
+
+        return $device;
+    }
 
 
 }

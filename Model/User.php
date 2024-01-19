@@ -132,5 +132,27 @@ class User
         $DB->closeConnection();
     }
 
+    public static function deleteUser($userID)
+    {
+        $DB = new DB();
+        $cred = $DB->getCred($userID)['id'];
+        $DB->deletePosition($userID);
+        $DB->deleteUser($userID);
+        $DB->deleteCredentials($cred);
+        $DB->closeConnection();
+
+    }
+
+    /** Edits a person and its position */
+    public static function editUser(array $data, int $userID)
+    {
+        $DB = new DB();
+        $edit = $DB->editUserData($userID, $data);
+        $editPos = $DB->editPosition($userID, $data['store_id'], $data['position']);
+        $DB->closeConnection();
+    }
+
+
+
 
 }

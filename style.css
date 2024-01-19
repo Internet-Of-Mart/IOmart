@@ -98,6 +98,10 @@
     background-color: #F29292;
 }
 
+.edit_btn {
+    background-color: #DDD6CD;
+}
+
 .value_inline_container {
     display: flex;
     justify-content: center;
@@ -312,7 +316,7 @@
 .user_line_labels {
     font-style: italic;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 800px;
     height: 30px;
 }
@@ -328,12 +332,16 @@
 }
 .user_line {
     display: flex;
-    justify-content: space-around;
-    width: 100%;
+    justify-content: space-between;
     height: 20px;
     background-color: #DDD6CD;
     align-items: center;
     padding: 10px 0 10px 0;
+}
+
+.user_line_box label {
+    width: 150px;
+    float: left;
 }
 
 /*
@@ -596,6 +604,10 @@ input {
     filter: invert(81%) sepia(97%) saturate(0%) hue-rotate(191deg) brightness(90%) contrast(81%);
 }
 
+.svg-white {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+}
+
 .Lightcontrolbox {
     left: 300px;
     height: 100px;
@@ -623,6 +635,40 @@ input {
     z-index: 9;
     background: white;
     padding: 10px;
+}
+
+.store-form-popup button {
+    height: 25px;
+}
+
+.form-popup {
+    display: none;
+    position: fixed;
+    top: 50vh;
+    right: 50vw;
+    background: white;
+    padding: 10px;
+    z-index: 3;
+}
+
+.form-popup * {
+    margin: 5px;
+}
+.form-popup button {
+    height: 30px;
+}
+
+.black-fade {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 150vh;
+    width: 150vw;
+    overflow: hidden;
+    background-color: black;
+    opacity: 50%;
+    z-index: 2;
 }
 
 /* Add styles to the form container */

@@ -32,12 +32,14 @@ include_once '../wrapper/session_checker.php';
         if ($_GET['tab'] == 'devices') {
             // A list of all sections of this store
             // GetDevicesOfStore(StoreID, TypeId)
-            $storeDevices = Device::getStoreDeviceData($_SESSION['store_id'],1);
+            $storeDevices = Device::getStoreDeviceData($_SESSION['store_id'], 1);
             include '../Components/MainControlBox.php';
+
             $elements = Section::getStoreSections($_SESSION['store_id']);
+
             foreach ($elements as $element) {
-                $devices = Device::getSectionDeviceData($element->id,1);
-                if(count($devices) < 1) continue;
+                $devices = Device::getSectionDeviceData($element->id, 1);
+                if (count($devices) < 1) continue;
                 $section = $element;
 
                 include '../Components/SectionRow.php';

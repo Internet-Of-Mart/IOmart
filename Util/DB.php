@@ -371,3 +371,118 @@ class DB
         return $resultStore;
     }
 }
+
+    /** Change the device from on(1) to off(0) or the other way back */
+    public function modifyDeviceState($deviceID, $state): bool
+    {
+        $deviceMod = $this->conn->execute_query(
+            "UPDATE device SET state=? WHERE device.id_device=?;"
+            , [$state, $deviceID]);
+
+        return boolval($deviceMod);
+    }
+
+    /** Change all devices from on(1) to off(0) or the other way back of a certain store */
+    public function modifyDeviceStateBulk($newState, $storeId, $devType): bool
+    {
+        $devBulk = $this->conn->execute_query(
+            "UPDATE device LEFT JOIN section ON device.device_section_id = section.id_section LEFT JOIN store ON section.store_id = store.id_store SET state=? WHERE store_id=? AND device_type_id=?;",
+            [$newState, $storeId, $devType]
+        );
+        return boolval($devBulk);
+    }
+
+    /** Change the device from on(1) to off(0) or the other way back */
+    public function modifyDeviceSetValue($deviceID, $state): bool
+    {
+        $deviceMod = $this->conn->execute_query(
+            "UPDATE control_type SET set_value=? WHERE control_type.device_id=?;"
+            , [$state, $deviceID]);
+
+        return boolval($deviceMod);
+    }
+
+    public function getCred($userID)
+    {
+        $credID = $this->conn->execute_query(
+            "SELECT id_credentials as id, username FROM credentials LEFT JOIN person ON credentials.id_credentials = person.credentials_id WHERE person.id_user=?"
+            , [$userID]);
+
+        return $credID->fetch_array();
+    }
+
+    public function deleteCredentials($credID)
+    {
+
+        $cred = $this->conn->execute_query("DELETE FROM credentials WHERE id_credentials=?", [
+            $credID
+        ]);
+        return boolval($cred);
+    }
+
+    public function deletePosition($userID)
+    {
+        $position = $this->conn->execute_query("DELETE FROM position WHERE user_id=?", [
+            $userID
+        ]);
+        return boolval($position);
+    }
+
+    public function deleteUser($userID)
+    {
+        $position = $this->conn->execute_query("DELETE FROM person WHERE id_user=?", [
+            $userID
+        ]);
+        return boolval($position);
+    }
+
+    /** Edit person */
+    public function editUserData($userID, $data)
+    {
+        $person = $this->conn->execute_query("UPDATE person p SET p.employee_number=?, p.first_name=?, p.last_name=?, p.email=?, p.telephone=?, p.address=?, p.date_of_birth=?, p.date_of_employment=? WHERE p.id_user=?", [
+            $data['employee_number'],
+            $data['first_name'],
+            $data['last_name'],
+            $data['email'],
+            $data['telephone'],
+            $data['address'],
+            $data['date_of_birth'],
+            $data['date_of_employment'],
+            $userID
+        ]);
+        return boolval($person);
+    }
+
+    /** Edit position */
+    public function editPosition($userID, $storeID, $positionType)
+    {
+        $person = $this->conn->execute_query("UPDATE position SET position.store_id=?, position.position_type=? WHERE position.user_id=?", [
+            $storeID,
+            $positionType,
+            $userID
+        ]);
+        return boolval($person);
+    }
+
+    /** Edit credentials */
+    public function editCredentials($userID, $newPass, $newUsername)
+    {
+        $cred = $this->getCred($userID)['id'];
+        $person = $this->conn->execute_query("UPDATE credentials SET credentials.username=?, credentials.password_hash=? WHERE credentials.id_credentials=?", [
+            $newUsername,
+            password_hash($newPass, PASSWORD_BCRYPT),
+            $userID
+        ]);
+        return boolval($person);
+    }
+
+    public function deleteSection($section_id)
+    {
+        $position = $this->conn->execute_query("DELETE FROM section WHERE id_section=?", [
+            $section_id
+        ]);
+        return boolval($position);
+    }
+
+}
+

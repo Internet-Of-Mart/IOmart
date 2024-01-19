@@ -1,10 +1,12 @@
 <script>
     function openForm() {
         document.getElementById("add-store").style.display = "block";
-    }
+        document.getElementById("action-fade").style.display = "block";
 
+    }
     function closeForm() {
         document.getElementById("add-store").style.display = "none";
+        document.getElementById("action-fade").style.display = "none";
     }
 </script>
 
@@ -28,3 +30,4 @@
         <button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
     </form>
 </div>
+<div id="<?php echo "action-fade"?>" class="black-fade"></div>
