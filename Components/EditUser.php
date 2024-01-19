@@ -66,7 +66,7 @@ use model\Store;
 
         <div class="fieldPadding15px">
             <label for="store-id">Associated Store:
-                <select name="store-id">
+                <select name="store_id">
                     <?php
                     $userStores = Store::getUserStores($element->id);
                     $storesID = array_map(function ($s) { return $s->id; }, $userStores);
@@ -82,8 +82,8 @@ use model\Store;
 
             <label for="position">Position:
                 <select name="position">
-                    <option <?php if ($element->position == 2) echo 'selected' ?> value="3">Manager</option>
-                    <option <?php if ($element->position == 3) echo 'selected' ?> value="2">User</option>
+                    <option <?php if ($element->position == 2) echo 'selected' ?> value="2">Manager</option>
+                    <option <?php if ($element->position == 3) echo 'selected' ?> value="3">User</option>
                 </select>
             </label>
         </div>
@@ -95,23 +95,6 @@ use model\Store;
 
             <label for="date_of_employment">Employment Date:
                 <input type="date" name="date_of_employment" value="<?php echo $element->do_employment ?>" required/>
-            </label>
-        </div>
-
-        <hr style="margin: 20px"/>
-        <h5>Credentials</h5>
-
-        <div class="fieldPadding15px">
-            <label for="username">Username:
-                <input type="text" name="username" required/>
-            </label>
-
-            <label for="password">Password:
-                <input type="password" name="password" required/>
-            </label>
-
-            <label for="confirm_password">Confirm Password:
-                <input type="password" name="confirm_password" required/>
             </label>
         </div>
 

@@ -65,8 +65,8 @@
 
             <label for="position">Position:
                 <select name="position">
-                    <option value="2">User</option>
-                    <option value="3">Manager</option>
+                    <option value="2">Manager</option>
+                    <option value="3">User</option>
                 </select>
             </label>
         </div>

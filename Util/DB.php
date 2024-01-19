@@ -377,13 +377,13 @@ class DB
         return boolval($deviceMod);
     }
 
-    public function getCredID($userID)
+    public function getCred($userID)
     {
         $credID = $this->conn->execute_query(
-            "SELECT id_credentials as id FROM credentials LEFT JOIN person ON credentials.id_credentials = person.credentials_id WHERE person.id_user=?"
+            "SELECT id_credentials as id, username FROM credentials LEFT JOIN person ON credentials.id_credentials = person.credentials_id WHERE person.id_user=?"
             , [$userID]);
 
-        return $credID->fetch_array()['id'];
+        return $credID->fetch_array();
     }
 
     public function deleteCredentials($credID)
@@ -409,6 +409,46 @@ class DB
             $userID
         ]);
         return boolval($position);
+    }
+
+    /** Edit person */
+    public function editUserData($userID, $data)
+    {
+        $person = $this->conn->execute_query("UPDATE person p SET p.employee_number=?, p.first_name=?, p.last_name=?, p.email=?, p.telephone=?, p.address=?, p.date_of_birth=?, p.date_of_employment=? WHERE p.id_user=?", [
+            $data['employee_number'],
+            $data['first_name'],
+            $data['last_name'],
+            $data['email'],
+            $data['telephone'],
+            $data['address'],
+            $data['date_of_birth'],
+            $data['date_of_employment'],
+            $userID
+        ]);
+        return boolval($person);
+    }
+
+    /** Edit position */
+    public function editPosition($userID, $storeID, $positionType)
+    {
+        $person = $this->conn->execute_query("UPDATE position SET position.store_id=?, position.position_type=? WHERE position.user_id=?", [
+            $storeID,
+            $positionType,
+            $userID
+        ]);
+        return boolval($person);
+    }
+
+    /** Edit credentials */
+    public function editCredentials($userID, $newPass, $newUsername)
+    {
+        $cred = $this->getCred($userID)['id'];
+        $person = $this->conn->execute_query("UPDATE credentials SET credentials.username=?, credentials.password_hash=? WHERE credentials.id_credentials=?", [
+            $newUsername,
+            password_hash($newPass, PASSWORD_BCRYPT),
+            $userID
+        ]);
+        return boolval($person);
     }
 
 }
