@@ -25,6 +25,8 @@ use model\User;
         Do you wish to delete <?php echo $element->firstname . " " . $element->lastname?> ?
     </label>
     <form action="../routing/utilDeleteUser.php" method="post" class="store-form-container">
+        <input type="hidden" name="user_id" value=<?php echo $element->id ?>>
+
         <button type="submit" class="active_off">Delete User</button>
         <button type="button" class="edit_btn cancel" onclick="closeDeleteForm<?php echo $element->id?>()">Cancel</button>
     </form>
