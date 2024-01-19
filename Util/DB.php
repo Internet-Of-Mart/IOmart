@@ -377,4 +377,38 @@ class DB
         return boolval($deviceMod);
     }
 
+    public function getCredID($userID)
+    {
+        $credID = $this->conn->execute_query(
+            "SELECT id_credentials as id FROM credentials LEFT JOIN person ON credentials.id_credentials = person.credentials_id WHERE person.id_user=?"
+            , [$userID]);
+
+        return $credID->fetch_array()['id'];
+    }
+
+    public function deleteCredentials($credID)
+    {
+
+        $cred = $this->conn->execute_query("DELETE FROM credentials WHERE id_credentials=?", [
+            $credID
+        ]);
+        return boolval($cred);
+    }
+
+    public function deletePosition($userID)
+    {
+        $position = $this->conn->execute_query("DELETE FROM position WHERE user_id=?", [
+            $userID
+        ]);
+        return boolval($position);
+    }
+
+    public function deleteUser($userID)
+    {
+        $position = $this->conn->execute_query("DELETE FROM person WHERE id_user=?", [
+            $userID
+        ]);
+        return boolval($position);
+    }
+
 }

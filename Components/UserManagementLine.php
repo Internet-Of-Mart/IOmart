@@ -8,6 +8,14 @@ use model\User;
     <label><?php echo $element->firstname . ' ' . $element->lastname ?></label>
     <label><?php echo $element->getPositionString()?></label>
     <label><?php echo $element->email?></label>
+
+    <div >
+        <button class="edit_btn">
+            <?php include '../Assets/editSvg.php'?>
+        </button>
+        <?php include '../Components/DeleteUser.php'?>
+
+    </div>
 </div>
 
 

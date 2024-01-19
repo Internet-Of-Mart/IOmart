@@ -132,5 +132,16 @@ class User
         $DB->closeConnection();
     }
 
+    public static function deleteUser($userID)
+    {
+        $DB = new DB();
+        $cred = $DB->getCredID($userID);
+        $DB->deletePosition($userID);
+        $DB->deleteUser($userID);
+        $DB->deleteCredentials($cred);
+        $DB->closeConnection();
+
+    }
+
 
 }

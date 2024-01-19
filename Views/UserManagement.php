@@ -9,6 +9,7 @@ include_once '../wrapper/session_checker.php';
             <label><b>User</b></label>
             <label>Privilege</label>
             <label>Contact</label>
+            <label>Actions</label>
         </div>
 
         <div class="user_line_box">
