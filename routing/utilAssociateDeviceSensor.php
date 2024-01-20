@@ -6,13 +6,7 @@ include $_SERVER['DOCUMENT_ROOT'] . '/Model/Sensor.php';
 use model\Device;
 use model\Sensor;
 
-//$data['section_id'],
-//            $data['name'],
-//            $data['device_type_id'],
-//            $data['state'],
-//            $data['maintenance']
-
-$sensor[] =
+$sensor =
     [
         'sensor_section_id' => $_POST['section_id'],
         'name' => $_POST['name'] . ' ' . 'Sensor'
@@ -30,9 +24,6 @@ switch ($_POST['device_type_id']) {
         $sensor['sensor_type_id'] = 2;
         break;
 }
-
-//var_dump($sensor);
-
 
 $device_id = Device::create($_POST);
 $sensor_id = Sensor::create($sensor);

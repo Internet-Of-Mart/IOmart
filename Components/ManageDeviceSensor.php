@@ -40,9 +40,9 @@ use model\Section;
             </label>
             <label for="device_type_id">Device Type:
                 <select name="device_type_id">
-                    <option value="1">Light</option>
                     <option value="2">Temperature</option>
                     <option value="3">Humidity</option>
+                    <option value="1">Light</option>
                 </select>
             </label>
         </div>
