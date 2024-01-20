@@ -29,7 +29,7 @@ use model\Section;
     <h4>Associate Device Sensor</h4>
     <form action="../routing/utilAssociateDeviceSensor.php" method="post">
         <input type="hidden" name="section_id" value=<?php echo $element->id ?>>
-        <input type="hidden" name="state" value="0">>
+        <input type="hidden" name="state" value="0">
 
         <div class="fieldPadding15px">
             <label for="name">Device Name:

@@ -16,7 +16,7 @@ use model\Section;
     }
 </script>
 
-<button class="active_off" onclick="openDeleteForm<?php echo $element->id?>()">
+<button class="active_off" style="margin: 10px" onclick="openDeleteForm<?php echo $element->id?>()">
     <?php include '../Assets/deleteSvg.php'?>
 </button>
 

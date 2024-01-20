@@ -64,4 +64,13 @@ class Sensor
         return $newData;
     }
 
+    public static function delete($senID): bool
+    {
+        $DB = new DB();
+        $newData = $DB->deleteSensor($senID);
+        $DB->closeConnection();
+
+        return $newData;
+    }
+
 }
