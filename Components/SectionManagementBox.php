@@ -1,6 +1,8 @@
 <?php /** @var Section $element */
 include_once($_SERVER['DOCUMENT_ROOT'] . '/Model/Section.php');
+
 use model\Section;
+
 $devicesAmount = $element->getSectionDeviceAggregate();
 
 ?>
@@ -24,12 +26,14 @@ $devicesAmount = $element->getSectionDeviceAggregate();
             $amount = $devicesAmount['Light'];
             include($_SERVER['DOCUMENT_ROOT'] . '/Assets/lightSvg.php');
             ?>
+        </div>
 
+        <div class="sc-btn">
+            <?php include '../Components/AddDeviceSensor.php' ?>
+            <?php include '../Components/DeleteDevice.php' ?>
         </div>
-        <div>
-            <?php include '../Components/ManageDeviceSensor.php'?>
-            <?php include '../Components/DeleteSection.php'?>
-        </div>
+
+        <?php include '../Components/DeleteSection.php' ?>
 
     </div>
 </div>

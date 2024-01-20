@@ -66,6 +66,10 @@
     display: inline-block;
 }
 
+.sc-btn {
+    display: flex;
+}
+
 .button_container button {
     height: 50px;
     width: 100px;
@@ -447,7 +451,7 @@
     height: 60px;
     width: 100px;
     background-color: #e8e3dc;
-    margin:15px;
+    margin:5px;
 }
 
 .manage_button:hover{

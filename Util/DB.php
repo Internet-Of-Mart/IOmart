@@ -524,5 +524,33 @@ class DB
         return boolval($dataPoint);
     }
 
+    public function getSectionDevices(int $sectionId): array
+    {
+        $data = [];
+
+        $result = $this->conn->execute_query("SELECT device.id_device, device.name as name, control_type.sensor_id FROM device LEFT JOIN control_type ON device.id_device = control_type.device_id LEFT JOIN sensor ON control_type.sensor_id = sensor.id_sensor WHERE device_section_id=?",
+            [$sectionId]);
+        while ($row = $result->fetch_array()) {
+            $data[] = $row;
+        }
+        return $data;
+    }
+
+    public function deleteSensor($senID): bool
+    {
+        $sen = $this->conn->execute_query("DELETE FROM sensor WHERE id_sensor=?", [
+            $senID
+        ]);
+        return boolval($sen);
+    }
+
+    public function deleteDevice($devID): bool
+    {
+        $dev = $this->conn->execute_query("DELETE FROM device WHERE id_device=?", [
+            $devID
+        ]);
+        return boolval($dev);
+    }
+
 }
 

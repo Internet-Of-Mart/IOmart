@@ -131,5 +131,29 @@ class Device
         return $device;
     }
 
+    public static function getSectionDevices(int $sectionId) : array
+    {
+        $DB = new DB();
+        $devices = $DB->getSectionDevices($sectionId);
+        $DB->closeConnection();
+
+        return array_map(function ($row) {
+            return ([
+                'id_device' => $row['id_device'],
+                'id_sensor' => $row['sensor_id'],
+                'name' => $row['name']
+            ]);
+        }, $devices);
+    }
+
+    public static function delete($devID): bool
+    {
+        $DB = new DB();
+        $newData = $DB->deleteDevice($devID);
+        $DB->closeConnection();
+
+        return $newData;
+    }
+
 
 }
