@@ -113,5 +113,23 @@ class Device
         return $device;
     }
 
+    public static function create($data): int
+    {
+        $DB = new DB();
+        $device = $DB->createDevice($data);
+        $DB->closeConnection();
+
+        return $device;
+    }
+
+    public static function associateSensor($sensor_id, $device_id, $set_value)
+    {
+        $DB = new DB();
+        $device = $DB->createControlRule($sensor_id, $device_id, $set_value);
+        $DB->closeConnection();
+
+        return $device;
+    }
+
 
 }

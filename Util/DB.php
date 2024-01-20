@@ -152,7 +152,7 @@ class DB
     {
         $data = [];
 
-        $result = $this->conn->execute_query("SELECT COUNT(id_section) as amount, id_section, device.id_device, device_type.name FROM section LEFT JOIN device ON section.id_section = device.device_section_id LEFT JOIN device_type ON device.device_type_id = device_type.id_type WHERE section.id_section=? GROUP BY device.name;", [$sectionID]);
+        $result = $this->conn->execute_query("SELECT COUNT(id_device) as amount, id_section, device.id_device, device_type.name FROM section LEFT JOIN device ON section.id_section = device.device_section_id LEFT JOIN device_type ON device.device_type_id = device_type.id_type WHERE section.id_section=? GROUP BY device_type.name;", [$sectionID]);
         while ($row = $result->fetch_array()) {
             $data[] = $row;
         }
@@ -481,6 +481,47 @@ class DB
             $section_id
         ]);
         return boolval($position);
+    }
+
+    public function createDevice($data): int
+    {
+        $dev = $this->conn->execute_query("INSERT INTO device (device_section_id, name, device_type_id, state, maintenance) VALUES  (?,?,?,?,?)", [
+            $data['section_id'],
+            $data['name'],
+            $data['device_type_id'],
+            $data['state'],
+            $data['maintenance'],
+        ]);
+        $dev = $this->conn->execute_query("SELECT MAX(id_device) as id FROM device;", []);
+        return $dev->fetch_array()['id'];
+    }
+
+    public function creteSensor($data): int
+    {
+        $sen = $this->conn->execute_query("INSERT INTO sensor (sensor_type_id, sensor_section_id, name) VALUES (?,?,?)", [
+            $data['sensor_type_id'],
+            $data['sensor_section_id'],
+            $data['name']
+        ]);
+
+        $sen = $this->conn->execute_query("SELECT MAX(id_sensor) as id FROM sensor;", []);
+        return $sen->fetch_array()['id'];
+    }
+
+    public function createControlRule($sensor_id, $device_id, $set_value)
+    {
+        $cRule = $this->conn->execute_query("INSERT INTO control_type (sensor_id, device_id, set_value) VALUES (?,?,?)", [
+            $sensor_id, $device_id, $set_value
+        ]);
+        return boolval($cRule);
+    }
+
+    public function addDataPoint($sensor_id, $value, $time): bool
+    {
+        $dataPoint = $this->conn->execute_query("INSERT INTO sensor_data (sensor_id, value, time) VALUES (?,?,?)", [
+            $sensor_id, $value, $time
+        ]);
+        return boolval($dataPoint);
     }
 
 }

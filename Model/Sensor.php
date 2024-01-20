@@ -2,6 +2,10 @@
 
 namespace model;
 
+include_once($_SERVER['DOCUMENT_ROOT'] . '/Util/DB.php');
+
+use Util\DB;
+
 class Sensor
 {
     public string $type = '';
@@ -41,6 +45,23 @@ class Sensor
             'Hallway B temps',
             0
         );
+    }
+
+    public static function create(array $sensor): int
+    {
+        $DB = new DB();
+        $newSensor = $DB->creteSensor($sensor);
+        $DB->closeConnection();
+        return $newSensor;
+    }
+
+    public static function addData($sensor_id, $value, $time): bool
+    {
+        $DB = new DB();
+        $newData = $DB->addDataPoint($sensor_id, $value, $time);
+        $DB->closeConnection();
+
+        return $newData;
     }
 
 }
