@@ -370,7 +370,6 @@ class DB
 
         return $resultStore;
     }
-}
 
     /** Change the device from on(1) to off(0) or the other way back */
     public function modifyDeviceState($deviceID, $state): bool
