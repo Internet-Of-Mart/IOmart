@@ -16,12 +16,12 @@ class Device
     public int $state;
     public int $set_value;
     public string $unit_type;
-    public int $actual_value;
+    public float $actual_value;
 
     //    public string $maintenance;
 
 
-    public function __construct(int $id, int $section_id, string $name, int $type, string $type_name, int $state, int $set_value, string $unit_type, int $actual_value /* string $maintenance*/)
+    public function __construct(int $id, int $section_id, string $name, int $type, string $type_name, int $state, int $set_value, string $unit_type, float $actual_value /* string $maintenance*/)
     {
         $this->id = $id;
         $this->type = $type;

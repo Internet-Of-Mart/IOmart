@@ -347,6 +347,30 @@ class DB
         return $data;
     }
 
+    /**
+     * EDIT store name and address
+     **/
+    public function editStore($storeID, $storeName, $storeAddress): bool
+    {
+        $resultStore = $this->conn->execute_query(
+            "UPDATE store SET store.name = ?, store.address = ? WHERE store.id_store = ?;",
+            [
+                $storeName,
+                $storeAddress,
+                $storeID
+            ]);
+
+        return $resultStore;
+    }
+
+    public function deleteStore($storeID): bool
+    {
+        $resultStore = $this->conn->execute_query(
+            "DELETE FROM store WHERE store.id_store = ?;", [$storeID]);
+
+        return $resultStore;
+    }
+
     /** Change the device from on(1) to off(0) or the other way back */
     public function modifyDeviceState($deviceID, $state): bool
     {
@@ -501,3 +525,4 @@ class DB
     }
 
 }
+
