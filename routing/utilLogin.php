@@ -10,8 +10,11 @@ session_start();
 
 $user = User::login($_POST['username'], $_POST['password']);
 
+
 if (!$user) {
-    //TODO: Login Error Display
+    $userErr = 'Not Valid User, Check Username or Password!';
+    header('location:../index.php?error=' . urlencode($userErr));
+    exit();
 
 } else {
 

@@ -627,7 +627,6 @@ input {
 .store-form-popup {
     display: none;
     position: fixed;
-    bottom: 50%;
     left: 42.5%;
     margin:auto;
     border: 3px solid #000000;
@@ -691,6 +690,10 @@ input {
 .button_del {
     background-color: #F29292 ;
     margin-left:10%;
+}
+
+.error {
+    color: red;
 }
 
 
