@@ -1,4 +1,5 @@
 <?php
+include_once '../wrapper/header.php';
 $error = isset($_GET['error']) ? urldecode($_GET['error']) : '';
 ?>
 
@@ -21,3 +22,6 @@ $error = isset($_GET['error']) ? urldecode($_GET['error']) : '';
         <p>Not a member? <a href="./Views/Registration.php">Register</a></p>
     </div>
 </div>
+<?php
+include_once '../wrapper/footer.php';
+?>
