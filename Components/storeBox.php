@@ -10,10 +10,14 @@ use model\Store;
         document.getElementById("name").value = name;
         document.getElementById("address").value = address;
         document.getElementById("edit-store").style.display = "block";
+        document.getElementById("action-fade").style.display = "block";
+
     }
 
     function closeForm2() {
         document.getElementById("edit-store").style.display = "none";
+        document.getElementById("action-fade").style.display = "none";
+
     }
 
     function confirmDelete(id) {
@@ -59,3 +63,4 @@ use model\Store;
         </form>
     </div>
 </div>
+<div id="<?php echo "action-fade"?>" class="black-fade"></div>
