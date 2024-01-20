@@ -263,7 +263,7 @@ class DB
 
         $lastStoreID = $lastStoreID->fetch_array()['id'];
 
-        $resultPosition =$this->conn->execute_query(
+        $resultPosition = $this->conn->execute_query(
             "INSERT INTO position (user_id, store_id, position_type) VALUES (?,?,?)",
             [
                 $userID,
@@ -278,7 +278,7 @@ class DB
 
     public function associateUserStore(int $storeID, int $userID, int $positionID)
     {
-        $resultPosition =$this->conn->execute_query(
+        $resultPosition = $this->conn->execute_query(
             "INSERT INTO position (user_id, store_id, position_type) VALUES (?,?,?)",
             [
                 $userID,
@@ -317,7 +317,7 @@ class DB
                 sensor_data
             GROUP BY
                 sensor_id
-            )   AS sensor_data ON sensor_data.sensor_id = sensor.id_sensor WHERE device.device_section_id=? AND device.device_type_id=?;",[$sectionID, $type]);
+            )   AS sensor_data ON sensor_data.sensor_id = sensor.id_sensor WHERE device.device_section_id=? AND device.device_type_id=?;", [$sectionID, $type]);
         while ($row = $result->fetch_array()) {
             $data[] = $row;
         }
@@ -340,7 +340,7 @@ class DB
         sensor_data
     GROUP BY
         sensor_id
-) AS sensor_data ON sensor_data.sensor_id = sensor.id_sensor WHERE store.id_store=? AND device.device_type_id=? ;",[$storeID, $type]);
+) AS sensor_data ON sensor_data.sensor_id = sensor.id_sensor WHERE store.id_store=? AND device.device_type_id=? ;", [$storeID, $type]);
         while ($row = $result->fetch_array()) {
             $data[] = $row;
         }
@@ -457,6 +457,47 @@ class DB
             $section_id
         ]);
         return boolval($position);
+    }
+
+    public function createDevice($data): int
+    {
+        $dev = $this->conn->execute_query("INSERT INTO device (device_section_id, name, device_type_id, state, maintenance) VALUES  (?,?,?,?,?)", [
+            $data['section_id'],
+            $data['name'],
+            $data['device_type_id'],
+            $data['state'],
+            $data['maintenance'],
+        ]);
+        $dev = $this->conn->execute_query("SELECT MAX(id_device) as id FROM device;", []);
+        return $dev->fetch_array()['id'];
+    }
+
+    public function creteSensor($data): int
+    {
+        $sen = $this->conn->execute_query("INSERT INTO sensor (sensor_type_id, sensor_section_id, name) VALUES (?,?,?)", [
+            $data['sensor_type_id'],
+            $data['sensor_section_id'],
+            $data['name']
+        ]);
+
+        $sen = $this->conn->execute_query("SELECT MAX(id_sensor) as id FROM sensor;", []);
+        return $sen->fetch_array()['id'];
+    }
+
+    public function createControlRule($sensor_id, $device_id, $set_value)
+    {
+        $cRule = $this->conn->execute_query("INSERT INTO control_type (sensor_id, device_id, set_value) VALUES (?,?,?)", [
+            $sensor_id, $device_id, $set_value
+        ]);
+        return boolval($cRule);
+    }
+
+    public function addDataPoint($sensor_id, $value, $time): bool
+    {
+        $dataPoint = $this->conn->execute_query("INSERT INTO sensor_data (sensor_id, value, time) VALUES (?,?,?)", [
+            $sensor_id, $value, $time
+        ]);
+        return boolval($dataPoint);
     }
 
 }
