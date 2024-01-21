@@ -628,6 +628,7 @@ input {
     display: none;
     position: fixed;
     left: 42.5%;
+    top:0;
     margin:auto;
     border: 3px solid #000000;
     box-shadow: 4px 4px 4px 4px rgba(0,0,0,0.16);
@@ -647,7 +648,6 @@ input {
     right: 50vw;
     background: white;
     padding: 10px;
-    z-index: 3;
 }
 
 .form-popup * {
