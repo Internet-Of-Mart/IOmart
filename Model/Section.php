@@ -109,5 +109,13 @@ class Section
 
     }
 
+    public static function create(int $storeId, string $name)
+    {
+        $DB = new DB();
+        $sect = $DB->createSection($storeId, $name);
+        $DB->closeConnection();
+    }
+
+
 
 }

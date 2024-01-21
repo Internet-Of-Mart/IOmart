@@ -19,7 +19,7 @@ include_once '../wrapper/session_checker.php';
         ?>
 
         <?php
-        include '../Components/SectionAddButton.php';
+        include '../Components/AddSection.php';
         ?>
 
     </div>

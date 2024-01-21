@@ -552,5 +552,13 @@ class DB
         return boolval($dev);
     }
 
+    public function createSection(int $storeID, string $name)
+    {
+        $dev = $this->conn->execute_query("INSERT INTO section (store_id, name) VALUES (?,?)", [
+            $storeID, $name
+        ]);
+        return boolval($dev);
+    }
+
 }
 
