@@ -99,6 +99,7 @@ $error = isset($_GET['error']) ? urldecode($_GET['error']) : '';
         <div class="fieldPadding15px">
             <label for="username">Username:
                 <input type="text" name="username" required/>
+            </label>
             <label for="password">Password:
                 <input type="password" name="password" required/>
             </label>
