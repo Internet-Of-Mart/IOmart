@@ -404,7 +404,7 @@ class DB
     public function getCred($userID)
     {
         $credID = $this->conn->execute_query(
-            "SELECT id_credentials as id, username FROM credentials LEFT JOIN person ON credentials.id_credentials = person.credentials_id WHERE person.id_user=?"
+            "SELECT id_credentials as id, username, password_hash FROM credentials LEFT JOIN person ON credentials.id_credentials = person.credentials_id WHERE person.id_user=?"
             , [$userID]);
 
         return $credID->fetch_array();
@@ -558,6 +558,14 @@ class DB
             $storeID, $name
         ]);
         return boolval($dev);
+    }
+    public function getPosition(int $positionID): array
+    {
+        $result = $this->conn->execute_query(
+            "SELECT name FROM position_type WHERE position_type.id_position=?;"
+            , [$positionID]);
+
+        return $result->fetch_array();
     }
 
 }

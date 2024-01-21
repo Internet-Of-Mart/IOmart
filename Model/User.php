@@ -152,6 +152,25 @@ class User
         $DB->closeConnection();
     }
 
+    public static function accountCred(int $userID): array
+    {
+        $DB = new DB();
+        $userDB = $DB->getCred($userID);
+        $DB->closeConnection();
+
+        return $userDB;
+
+    }
+
+    public static function getPosition($position): array
+    {
+        $DB = new DB();
+        $position = $DB->getPosition($position);
+        $DB->closeConnection();
+
+        return $position;
+    }
+
 
 
 
