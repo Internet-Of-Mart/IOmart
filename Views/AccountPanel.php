@@ -3,11 +3,14 @@ include_once '../wrapper/header.php';
 include_once '../wrapper/session_checker.php';
 
 include $_SERVER['DOCUMENT_ROOT'] . '/Model/User.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/Model/Store.php';
+use model\Store;
 use model\User;
 
 $account = User::getSessionUser();
 $cred = User::accountCred($account->id);
 $pos = User::getPosition($account->position);
+$aff = Store::getUserStores($account->id);
 ?>
 
 <div class="window">
@@ -28,15 +31,17 @@ $pos = User::getPosition($account->position);
                 <h5><label for="date_of_birth">Date Of Birth: <?php echo $account->dob?></label><br></h5>
                 <h3>Employee Data</h3>
                 <h5><label for="privilege">Privilege: <?php echo $pos['name'];?></label><br></h5>
-                <h5><label for="affiliatedStore">Affiliated Store: </label><br></h5>
+                <h5><label for="affiliatedStore">Affiliated Store: <br> <?php foreach ($aff as $store) {
+                            echo $store->name . "<br>";
+                        };?></label><br></h5>
                 <h5><label for="employee_number">Employee Number: <?php echo $account->employee_number?> </label><br></h5>
                 <h5><label for="date_of_employment">Employment Date: <?php echo $account->do_employment?> </label><br></h5>
                 <h3>Credentials</h3>
                 <h5><label for="username">Username: <?php echo $cred['username']?></label><br></h5>
+                <?php
+                include '../Components/EditAccount.php'
+                ?>
             </form>
-            <?php
-            include '../Components/EditAccount.php'
-            ?>
         </div>
     </div>
 </div>

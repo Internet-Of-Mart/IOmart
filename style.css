@@ -400,7 +400,7 @@
 }
 .account_panel h5 {
     padding: 3px;
-    margin:0px;
+    margin:0;
 }
 
 
@@ -713,7 +713,7 @@ input {
 .account_window{
     background-color: #FFFFFF;
     border-radius: 25px;
-    padding: 30px;
+    padding: 10px 30px;
     height: 600px;
     width: 300px;
     display: flex;
