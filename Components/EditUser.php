@@ -39,8 +39,8 @@ use model\Store;
                 <input type="text" name="first_name" value="<?php echo $element->firstname ?>" required/>
             </label>
 
-            <label for="last_name">Last Name:
-                <input type="text" name="last_name" value="<?php echo $element->lastname ?>" required/>
+            <label for="last_name">Last Name (in Uppercase):
+                <input type="text" name="last_name" value="<?php echo $element->lastname ?>" pattern="[A-Z]+" required/>
             </label>
         </div>
 
@@ -80,7 +80,7 @@ use model\Store;
                 </select>
             </label>
 
-            <label for="position">Position:
+            <label for="position">Position: <br>
                 <select name="position">
                     <option <?php if ($element->position == 2) echo 'selected' ?> value="2">Manager</option>
                     <option <?php if ($element->position == 3) echo 'selected' ?> value="3">User</option>

@@ -128,7 +128,7 @@ class User
         $DB = new DB();
         $DB->createUser($data);
         $userID = $DB->getMaxUserID();
-        $DB->associateUserStore($data['store-id'], $userID, $data['position']);
+        $DB->associateUserStore($data['store_id'], $userID, $data['position']);
         $DB->closeConnection();
     }
 

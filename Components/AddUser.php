@@ -1,6 +1,16 @@
-<?php /* @var Array $adminStores */?>
-
+<?php /* @var Array $adminStores */
+$error = isset($_GET['error']) ? urldecode($_GET['error']) : '';
+?>
 <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Check if there is an error parameter in the URL
+        const errorParam = "<?php echo $error; ?>";
+
+        // If there is an error, call the openAddForm function
+        if (errorParam) {
+            openAddForm();
+        }
+    });
     function openAddForm() {
         document.getElementById("add-user").style.display = "block";
         document.getElementById("action-fade").style.display = "block";
@@ -19,9 +29,8 @@
     </svg>
 </div>
 
-<div class="store-form-popup" id="add-user">
-
-    <h4>New User</h4>
+<div class="store-form-popup" id="add-user" >
+    <h4>New User &emsp;&emsp;&emsp;&emsp;&emsp;<span class="error"><?php echo $error;?></span></h4>
     <form action="../routing/utilAddUser.php" method="post">
         <h5>Personal details</h5>
 
@@ -30,8 +39,8 @@
                 <input type="text" name="first_name" required/>
             </label>
 
-            <label for="last_name">Last Name:
-                <input type="text" name="last_name" required/>
+            <label for="last_name">Last Name (in Uppercase):
+                <input type="text" name="last_name" pattern="[A-Z]+" required/>
             </label>
         </div>
 
@@ -56,8 +65,8 @@
         <h5>Employment details</h5>
 
         <div class="fieldPadding15px">
-            <label for="store-id">Associated Store:
-                <select name="store-id">
+            <label for="store_id">Associated Store:
+                <select name="store_id">
                     <?php
                     foreach ($adminStores as $st) {
                         echo "<option value='$st->id'>$st->name</option>";
@@ -90,14 +99,12 @@
         <div class="fieldPadding15px">
             <label for="username">Username:
                 <input type="text" name="username" required/>
-            </label>
-
             <label for="password">Password:
                 <input type="password" name="password" required/>
             </label>
 
             <label for="confirm_password">Confirm Password:
-                <input type="password" name="confirm_password" required/>
+                <input type="password" name="confirm" required/>
             </label>
         </div>
 

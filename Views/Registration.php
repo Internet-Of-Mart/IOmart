@@ -1,10 +1,12 @@
 <?php
 include_once '../wrapper/header.php';
+$error = isset($_GET['error']) ? urldecode($_GET['error']) : '';
 ?>
 <div class="window_login">
     <img src="../Assets/IOmart%20Logo.png" alt="">
     <div class="Registration_box">
         <h4>Registration</h4>
+        <label class="error"><?php echo $error;?></label> <br>
         <form action="../routing/utilRegistration.php" method="post">
 
 
@@ -58,7 +60,7 @@ include_once '../wrapper/header.php';
             </label>
 
             <label for="confirm">Confirm Password:
-                <input type="password" name="confirm password" required/>
+                <input type="password" name="confirm"  required/>
             </label>
 
             <button type="submit">Create</button>
