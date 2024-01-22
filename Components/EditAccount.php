@@ -59,20 +59,6 @@ use model\Store;
             <input type="email" name="email" value="<?php echo $account->email ?>" required/>
         </label>
 
-
-        <hr style="margin: 20px"/>
-        <h5>Employment details</h5>
-
-        <div class="fieldPadding15px">
-            <label for="employee_number">Employee Number:
-                <input type="text" name="employee_number" value="<?php echo $account->employee_number ?>" required/>
-            </label>
-
-            <label for="date_of_employment">Employment Date:
-                <input type="date" name="date_of_employment" value="<?php echo $account->do_employment ?>" required/>
-            </label>
-        </div>
-
         <hr style="margin: 20px"/>
         <h5>Credentials</h5>
 
