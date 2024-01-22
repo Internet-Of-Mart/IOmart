@@ -144,7 +144,7 @@ class User
     }
 
     /** Edits a person and its position */
-    public static function editUser(array $data, int $userID)
+    public static function editUser(array $data, int $userID): void
     {
         $DB = new DB();
         $edit = $DB->editUserData($userID, $data);
@@ -152,7 +152,57 @@ class User
         $DB->closeConnection();
     }
 
+    public static function accountCred(int $userID): array
+    {
+        $DB = new DB();
+        $userDB = $DB->getCred($userID);
+        $DB->closeConnection();
 
+        return $userDB;
+
+    }
+
+    public static function getPosition($position): array
+    {
+        $DB = new DB();
+        $position = $DB->getPosition($position);
+        $DB->closeConnection();
+
+        return $position;
+    }
+
+    public static function getCred($userID)
+    {
+        $DB = new DB();
+        $userDB = $DB->getCred($userID);
+        $DB->closeConnection();
+        return $userDB;
+    }
+
+    public static function changeUsername(int $userId, string $username): bool
+    {
+        $DB = new DB();
+        $username = $DB->changeUsername($userId, $username);
+        $DB->closeConnection();
+        return $username;
+    }
+
+    public static function changePassword(int $userId, string $passWord): bool
+    {
+        $DB = new DB();
+        $psw = $DB->changePassword($userId, password_hash($passWord, PASSWORD_BCRYPT));
+        $DB->closeConnection();
+        return $psw;
+    }
+
+
+    public static function changePerson($userID, $data)
+    {
+        $DB = new DB();
+        $edit = $DB->editUserData($userID, $data);
+        $DB->closeConnection();
+
+    }
 
 
 }

@@ -404,7 +404,7 @@ class DB
     public function getCred($userID)
     {
         $credID = $this->conn->execute_query(
-            "SELECT id_credentials as id, username FROM credentials LEFT JOIN person ON credentials.id_credentials = person.credentials_id WHERE person.id_user=?"
+            "SELECT id_credentials as id, username, password_hash FROM credentials LEFT JOIN person ON credentials.id_credentials = person.credentials_id WHERE person.id_user=?"
             , [$userID]);
 
         return $credID->fetch_array();
@@ -558,6 +558,29 @@ class DB
             $storeID, $name
         ]);
         return boolval($dev);
+    }
+    public function getPosition(int $positionID): array
+    {
+        $result = $this->conn->execute_query(
+            "SELECT name FROM position_type WHERE position_type.id_position=?;"
+            , [$positionID]);
+
+        return $result->fetch_array();
+    }
+
+    public function changeUsername(int $userId, string $username): bool
+    {
+        $usr = $this->conn->execute_query("UPDATE person LEFT JOIN credentials ON person.credentials_id = credentials.id_credentials SET credentials.username=? WHERE person.id_user=?;", [
+            $username, $userId
+        ]);
+        return boolval($usr);
+    }
+    public function changePassword(int $userId, string $passWord): bool
+    {
+        $pas = $this->conn->execute_query("UPDATE person LEFT JOIN credentials ON person.credentials_id = credentials.id_credentials SET credentials.password_hash=? WHERE person.id_user=?;", [
+            $passWord, $userId
+        ]);
+        return boolval($pas);
     }
 
 }
