@@ -6,6 +6,7 @@ $views = [
         '/Views/UserManagement.php',
         '/Views/StoreComparison.php',
         '/Views/StoreManagement.php',
+        '/Views/AccountPanel.php'
     ],
     'notAdmin' => [
         '/Views/AccountPanel.php',
