@@ -714,8 +714,6 @@ input {
     background-color: #FFFFFF;
     border-radius: 25px;
     padding: 10px 30px;
-    height: 600px;
-    width: 300px;
     display: flex;
     justify-content: space-evenly;
     flex-direction: column;
