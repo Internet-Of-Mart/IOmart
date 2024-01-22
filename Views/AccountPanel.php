@@ -2,7 +2,6 @@
 include_once '../wrapper/header.php';
 include_once '../wrapper/session_checker.php';
 
-include $_SERVER['DOCUMENT_ROOT'] . '/Model/User.php';
 include $_SERVER['DOCUMENT_ROOT'] . '/Model/Store.php';
 
 use model\Store;

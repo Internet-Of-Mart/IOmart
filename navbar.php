@@ -5,20 +5,17 @@ $loc = substr($_SERVER['SCRIPT_NAME'], strrpos($_SERVER['SCRIPT_NAME'], "/") +1)
 include $_SERVER['DOCUMENT_ROOT'] . '/Model/User.php';
 use model\User;
 
-
 ?>
 
 <div class="navbar">
 
-    <div class="sub_navbar">
-        <img src="../Assets/IOmart%20Logo.png">
-        <?php if (User::getSessionUser()->position == 1) echo '<a href="/routing/utilStoreDeselect.php">Admin Management</a>'; ?>
-
-        <a style="<?php if ($loc == 'SectionManagement.php') echo "background-color: #9f8c71; color: #ffffff"?>"
-           href="/Views/SectionManagement.php"> Section Management </a>
-        <a style="<?php if ($loc == 'StoreData.php') echo "background-color: #9f8c71; color: #ffffff"?>"
-           href="/Views/StoreData.php"> Store Data</a>
-    </div>
+    <?php
+    if (User::getSessionUser()->position == 1 || User::getSessionUser()->position == 2) {
+        include '../Components/ManagerPanel.php';
+    } else {
+        echo '<img src="../Assets/IOmart%20Logo.png">';
+    }
+    ?>
 
     <div class="sub_navbar">
         <h3>Control Panel</h3>
