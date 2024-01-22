@@ -1,12 +1,12 @@
 <?php /** @var Store $element */
 include_once($_SERVER['DOCUMENT_ROOT'] . '/Model/Store.php');
 use model\Store;
+
 ?>
 
 <script>
     function editForm(id, name, address) {
-        console.log("Edit form clicked:",id, name, address);
-        document.getElementById("id").value = id;
+        document.getElementById("edit-id").value = id;
         document.getElementById("name").value = name;
         document.getElementById("address").value = address;
         document.getElementById("edit-store").style.display = "block";
@@ -20,26 +20,26 @@ use model\Store;
 
     }
 
-    function confirmDelete(id) {
+    function confirmDelete() {
         if (confirm("Delete Store?")){
-            document.getElementById("id").value = id;
+            document.getElementById("edit-id").value
             document.getElementById("btnDelete").value = "1";
             document.forms['edit-store'].submit();
         } else {
             window.location.href = '../Views/StoreManagement.php';
             return false;
-         }
-     }
- </script>
+        }
+    }
+</script>
 
- <div class="storebox">
-     <h3><?php echo $element->name ?></h3>
+<div class="storebox">
+    <h3><?php echo $element->name ?></h3>
     <div class="image_placeholder">
         <svg xmlns="http://www.w3.org/2000/svg" height="48" width="60" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path d="M36.8 192H603.2c20.3 0 36.8-16.5 36.8-36.8c0-7.3-2.2-14.4-6.2-20.4L558.2 21.4C549.3 8 534.4 0 518.3 0H121.7c-16 0-31 8-39.9 21.4L6.2 134.7c-4 6.1-6.2 13.2-6.2 20.4C0 175.5 16.5 192 36.8 192zM64 224V384v80c0 26.5 21.5 48 48 48H336c26.5 0 48-21.5 48-48V384 224H320V384H128V224H64zm448 0V480c0 17.7 14.3 32 32 32s32-14.3 32-32V224H512z"/></svg>
     </div>
     <h4><?php echo $element->address ?></h4>
     <form action="../routing/utilStoreSelect.php" method="post">
-        <input type="hidden" name="store_id" value=<?php echo $element->id?>>
+        <input type="hidden" name="store_id" value="<?php echo $element->id ?>">
         <input type="submit" value="Select store" />
     </form>
     <div class="edit_button" style="background-color: white" onclick="editForm('<?php echo $element->id ?>', '<?php echo $element->name ?>', '<?php echo $element->address ?>')">
@@ -49,7 +49,7 @@ use model\Store;
     <div class="store-form-popup" id="edit-store">
         <form action="../routing/utilStoreEdit.php?" method="post" class="store-form-container">
             <label>
-                <input type="hidden" id="id" name="id" value="" />
+                <input type="hidden" id="edit-id" name="id" value="" />
             </label>
             <label class="padding-right15" for="name">Store Name:
                 <input type="text" id="name" name="name" required value="" />
@@ -59,7 +59,7 @@ use model\Store;
             </label>
             <button name='btnSave' type="submit" class="btn">Save</button>
             <button type="button" class="btn cancel" onclick="closeForm2()">Cancel</button>
-            <button name='btnDelete' type="submit" class="button_del" onclick="return confirmDelete(<?php echo $element->id ?>)">Delete</button>
+            <button name='btnDelete' type="submit" class="button_del" onclick="return confirmDelete()">Delete</button>
         </form>
     </div>
 </div>
