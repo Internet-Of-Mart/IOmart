@@ -25,7 +25,7 @@ include_once '../wrapper/session_checker.php';
 
         if ($_GET['tab'] == 'overview') {
             $element = Store::getStoreTypeData(4, $_SESSION['store_id']);
-            include_once '../Components/graph_MDS.php';
+            include_once '../Components/OverviewGraph.php';
         }
 
 
