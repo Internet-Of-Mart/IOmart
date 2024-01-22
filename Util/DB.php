@@ -568,5 +568,20 @@ class DB
         return $result->fetch_array();
     }
 
+    public function changeUsername(int $userId, string $username): bool
+    {
+        $usr = $this->conn->execute_query("UPDATE person LEFT JOIN credentials ON person.credentials_id = credentials.id_credentials SET credentials.username=? WHERE person.id_user=?;", [
+            $username, $userId
+        ]);
+        return boolval($usr);
+    }
+    public function changePassword(int $userId, string $passWord): bool
+    {
+        $pas = $this->conn->execute_query("UPDATE person LEFT JOIN credentials ON person.credentials_id = credentials.id_credentials SET credentials.password_hash=? WHERE person.id_user=?;", [
+            $passWord, $userId
+        ]);
+        return boolval($pas);
+    }
+
 }
 

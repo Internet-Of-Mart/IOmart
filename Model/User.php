@@ -171,20 +171,37 @@ class User
         return $position;
     }
 
-    public static function editAccount(int $userID, array $data): void
+    public static function getCred($userID)
     {
         $DB = new DB();
-        $userDB = $DB->editCredentials($userID, $data['password'], $data['username']);
-        $userDB = $DB->editUserData($userID, $data);
+        $userDB = $DB->getCred($userID);
         $DB->closeConnection();
+        return $userDB;
     }
 
-    public static function editAccountNewPass(int $userID, array $data): void
+    public static function changeUsername(int $userId, string $username): bool
     {
         $DB = new DB();
-        $userDB = $DB->editCredentials($userID, $data['newpass'], $data['username']);
-        $userDB = $DB->editUserData($userID, $data);
+        $username = $DB->changeUsername($userId, $username);
         $DB->closeConnection();
+        return $username;
+    }
+
+    public static function changePassword(int $userId, string $passWord): bool
+    {
+        $DB = new DB();
+        $psw = $DB->changePassword($userId, password_hash($passWord, PASSWORD_BCRYPT));
+        $DB->closeConnection();
+        return $psw;
+    }
+
+
+    public static function changePerson($userID, $data)
+    {
+        $DB = new DB();
+        $edit = $DB->editUserData($userID, $data);
+        $DB->closeConnection();
+
     }
 
 

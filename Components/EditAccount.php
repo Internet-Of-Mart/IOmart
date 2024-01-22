@@ -1,10 +1,9 @@
 <?php
 /** @var User $account */
-
 /* @var Array $adminStores */
-
 use model\User;
-use model\Store;
+
+$error = isset($_GET['error']) ? urldecode($_GET['error']) : '';
 
 ?>
 
@@ -28,8 +27,11 @@ use model\Store;
 <div class="store-form-popup" id="<?php echo "edit-user-" . $account->id ?>">
 
     <h4>Editing User</h4>
-    <form action="../routing/utilEditUser.php" method="post" style="display: flex; flex-direction: column">
+    <form action="../routing/utilEditAccount.php" method="post" style="display: flex; flex-direction: column">
         <input type="hidden" name="user_id" value=<?php echo $account->id ?>>
+        <input type="hidden" name="employee_number" value=<?php echo $account->employee_number ?>>
+        <input type="hidden" name="date_of_employment" value=<?php echo $account->do_employment ?>>
+
 
         <h5>Personal details</h5>
 
@@ -64,17 +66,19 @@ use model\Store;
 
         <div class="fieldPadding15px">
             <label for="username">Username:
-                <input type="text" name="username" required/>
+                <input type="text" value="<?php echo User::getCred($account->id)["username"] ?>" name="username" required/>
             </label>
 
             <label for="password">Password:
-                <input type="password" name="password" required/>
+                <input type="password" name="password"/>
             </label>
 
             <label for="confirm">Confirm Password:
-                <input type="password" name="confirm"  required/>
+                <input type="password" name="confirm"/>
             </label>
         </div>
+
+        <label class="error"><?php echo $error;?></label> <br>
 
         <div>
             <button type="submit" class="active_on">Edit User</button>
