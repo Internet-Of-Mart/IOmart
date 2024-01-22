@@ -144,7 +144,7 @@ class User
     }
 
     /** Edits a person and its position */
-    public static function editUser(array $data, int $userID)
+    public static function editUser(array $data, int $userID): void
     {
         $DB = new DB();
         $edit = $DB->editUserData($userID, $data);
@@ -171,7 +171,21 @@ class User
         return $position;
     }
 
+    public static function editAccount(int $userID, array $data): void
+    {
+        $DB = new DB();
+        $userDB = $DB->editCredentials($userID, $data['password'], $data['username']);
+        $userDB = $DB->editUserData($userID, $data);
+        $DB->closeConnection();
+    }
 
+    public static function editAccountNewPass(int $userID, array $data): void
+    {
+        $DB = new DB();
+        $userDB = $DB->editCredentials($userID, $data['newpass'], $data['username']);
+        $userDB = $DB->editUserData($userID, $data);
+        $DB->closeConnection();
+    }
 
 
 }
