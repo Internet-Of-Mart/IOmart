@@ -95,6 +95,21 @@ class User
         return null;
     }
 
+    public static function loginPasswordless($username): ?User
+    {
+        $DB = new DB();
+        $userDB = $DB->getUserCredentials($username)[0];
+        $newUser = $DB->getUserPositions($userDB['id_user']);
+        $DB->closeConnection();
+
+
+        if (sizeof($newUser) == 0) {
+            $userDB['position_type'] = 1;
+        }
+        return User::loadRaw($userDB);
+
+    }
+
     public static function getSessionUser()
     {
         if (!isset($_SESSION)) {

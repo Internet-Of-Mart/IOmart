@@ -21,7 +21,7 @@ if ($oldUsername != $_POST['username']) {
     }
 }
 
-if (isset($_POST['password'])) {
+if (isset($_POST['password']) && $_POST['password'] != '') {
     var_dump('Change psw');
     if ($_POST['password'] != $_POST['confirm']) {
         $passwordErr = 'Passwords Dont Match!';
@@ -34,7 +34,7 @@ if (isset($_POST['password'])) {
 
 User::changePerson($user->id, $_POST);
 
-$user = User::login($_POST['username'], $_POST['password']);
+$user = User::loginPasswordless($_POST['username']);
 $_SESSION['user'] = json_encode($user);
 
 var_dump(User::getSessionUser());
