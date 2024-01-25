@@ -3,6 +3,8 @@ include_once '../wrapper/header.php';
 include_once '../wrapper/session_checker.php';
 
 include $_SERVER['DOCUMENT_ROOT'] . '/Model/Store.php';
+include_once($_SERVER['DOCUMENT_ROOT'] . '/Model/User.php');
+
 
 use model\Store;
 use model\User;
